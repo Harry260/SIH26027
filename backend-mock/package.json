@@ -1,0 +1,32 @@
+{
+  "name": "sih26027-backend-mock",
+  "version": "1.0.0",
+  "description": "Mock API service and procedural railway track generator for Indian Railways AI Block Planning (SIH26027)",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "indian-railways",
+    "block-planning",
+    "sih26027",
+    "express",
+    "mock-api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.9",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.2"
+  }
+}
