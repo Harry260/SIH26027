@@ -111,10 +111,7 @@ combined = pd.concat([tms, smms, tdms], ignore_index=True)
 
 
 # Save separate system files + combined file
-tms.to_csv('tms_track_defects.csv', index=False)
-smms.to_csv('smms_signal_defects.csv', index=False)
-tdms.to_csv('tdms_traction_defects.csv', index=False)
-combined.to_csv('combined_maintenance_requests.csv', index=False)
+
 
 sev_score_map = {'Low': 1, 'Medium': 2, 'High': 3, 'Critical': 4} # Dictionary containing number as key and severity  as value
 severity_score = combined['severity'].map(sev_score_map) #replacing the severity with integer values for calculation
@@ -123,7 +120,10 @@ sampled_risk = np.random.choice(v2['risk_score'].dropna(), size=len(combined), r
 noise = (sampled_risk - sampled_risk.mean()) / sampled_risk.std() * 3 #noise
 combined['priority_score'] = (severity_score * 10) + urgency_score + noise 
 combined['priority_score'] = combined['priority_score'].round(2) #new column priority_score
-
+tms.to_csv('tms_track_defects.csv', index=False)
+smms.to_csv('smms_signal_defects.csv', index=False)
+tdms.to_csv('tdms_traction_defects.csv', index=False)
+combined.to_csv('combined_maintenance_requests.csv', index=False)
 print(f"\nTMS requests: {len(tms)}")
 print(f"SMMS requests: {len(smms)}")
 print(f"TDMS requests: {len(tdms)}")
