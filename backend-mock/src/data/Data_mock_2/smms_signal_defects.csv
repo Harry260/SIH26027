@@ -1,0 +1,120 @@
+request_id,source_system,department,region,corridor_id,asset_id,defect_type,severity,overdue_days,estimated_duration_hours,detected_date
+SMMS-00001,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-5507,Point Machine Failure,Low,3,2.3,2026-07-10
+SMMS-00002,SMMS,Signal & Telecommunication,Central Railway,CORR-022,SIG-5590,Communication Link Failure,Low,8,5.1,2026-07-25
+SMMS-00003,SMMS,Signal & Telecommunication,Central Railway,CORR-022,SIG-4308,Level Crossing Fault,Low,7,3.0,2026-05-23
+SMMS-00004,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-8834,Signal Relay Fault,Low,8,4.4,2026-07-30
+SMMS-00005,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-2035,Signal Relay Fault,Low,5,4.8,2026-06-19
+SMMS-00006,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-7324,Level Crossing Fault,Low,-5,3.9,2026-05-04
+SMMS-00007,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-5524,Interlocking Fault,Low,2,5.5,2026-07-19
+SMMS-00008,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-9336,Communication Link Failure,Medium,-2,8.2,2026-05-22
+SMMS-00009,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-5956,Signal Relay Fault,Medium,8,4.3,2026-08-01
+SMMS-00010,SMMS,Signal & Telecommunication,Central Railway,CORR-022,SIG-6699,Level Crossing Fault,Medium,15,7.2,2026-06-16
+SMMS-00011,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-6994,Level Crossing Fault,Medium,-9,5.8,2026-06-04
+SMMS-00012,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-5810,Level Crossing Fault,Medium,0,5.7,2026-06-14
+SMMS-00013,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-1042,Track Circuit Fault,High,4,13.6,2026-05-24
+SMMS-00014,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-2966,Point Machine Failure,High,30,6.7,2026-05-15
+SMMS-00015,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-7892,Level Crossing Fault,High,14,14.7,2026-05-21
+SMMS-00016,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-2114,Level Crossing Fault,Critical,51,25.9,2026-06-16
+SMMS-00017,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-2611,Point Machine Failure,Low,-8,3.1,2026-08-01
+SMMS-00018,SMMS,Signal & Telecommunication,Eastern Railway,CORR-019,SIG-7909,Point Machine Failure,Low,1,2.3,2026-06-21
+SMMS-00019,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-4127,Level Crossing Fault,Low,-17,4.6,2026-06-03
+SMMS-00020,SMMS,Signal & Telecommunication,Eastern Railway,CORR-006,SIG-6854,Track Circuit Fault,Low,-10,4.6,2026-07-17
+SMMS-00021,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-1093,Communication Link Failure,Low,-6,2.4,2026-06-30
+SMMS-00022,SMMS,Signal & Telecommunication,Eastern Railway,CORR-032,SIG-3319,Signal Relay Fault,Low,-6,3.3,2026-07-16
+SMMS-00023,SMMS,Signal & Telecommunication,Eastern Railway,CORR-006,SIG-9693,Point Machine Failure,Low,9,6.0,2026-07-27
+SMMS-00024,SMMS,Signal & Telecommunication,Eastern Railway,CORR-032,SIG-2862,Level Crossing Fault,Low,3,4.7,2026-05-25
+SMMS-00025,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-9354,Communication Link Failure,Low,-19,4.9,2026-07-20
+SMMS-00026,SMMS,Signal & Telecommunication,Eastern Railway,CORR-006,SIG-3119,Interlocking Fault,Low,-10,2.9,2026-06-13
+SMMS-00027,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-3301,Communication Link Failure,Medium,-1,8.8,2026-07-16
+SMMS-00028,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-1571,Track Circuit Fault,Medium,-8,9.3,2026-07-16
+SMMS-00029,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-9543,Communication Link Failure,High,33,13.8,2026-07-19
+SMMS-00030,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-9639,Point Machine Failure,High,34,15.3,2026-06-29
+SMMS-00031,SMMS,Signal & Telecommunication,Eastern Railway,CORR-019,SIG-4525,Communication Link Failure,High,34,13.6,2026-07-08
+SMMS-00032,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-8732,Level Crossing Fault,High,23,6.5,2026-07-24
+SMMS-00033,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-4496,Level Crossing Fault,High,17,14.4,2026-06-10
+SMMS-00034,SMMS,Signal & Telecommunication,Eastern Railway,CORR-019,SIG-6225,Level Crossing Fault,High,32,15.4,2026-06-21
+SMMS-00035,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-7803,Track Circuit Fault,High,22,15.9,2026-05-28
+SMMS-00036,SMMS,Signal & Telecommunication,Eastern Railway,CORR-032,SIG-3828,Point Machine Failure,Critical,20,21.8,2026-06-16
+SMMS-00037,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-3587,Signal Relay Fault,Critical,23,15.1,2026-06-27
+SMMS-00038,SMMS,Signal & Telecommunication,Eastern Railway,CORR-032,SIG-7285,Interlocking Fault,Critical,34,15.2,2026-07-12
+SMMS-00039,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-5198,Interlocking Fault,Critical,45,19.8,2026-06-04
+SMMS-00040,SMMS,Signal & Telecommunication,Northern Railway,CORR-038,SIG-6875,Track Circuit Fault,Low,5,5.7,2026-06-29
+SMMS-00041,SMMS,Signal & Telecommunication,Northern Railway,CORR-030,SIG-6074,Interlocking Fault,Low,-13,5.2,2026-07-14
+SMMS-00042,SMMS,Signal & Telecommunication,Northern Railway,CORR-008,SIG-6667,Communication Link Failure,Low,0,2.8,2026-05-31
+SMMS-00043,SMMS,Signal & Telecommunication,Northern Railway,CORR-012,SIG-9382,Point Machine Failure,Low,-5,3.6,2026-07-20
+SMMS-00044,SMMS,Signal & Telecommunication,Northern Railway,CORR-012,SIG-3618,Communication Link Failure,Low,-5,4.4,2026-06-05
+SMMS-00045,SMMS,Signal & Telecommunication,Northern Railway,CORR-008,SIG-5338,Interlocking Fault,Low,-2,2.6,2026-06-04
+SMMS-00046,SMMS,Signal & Telecommunication,Northern Railway,CORR-012,SIG-1283,Level Crossing Fault,Low,4,2.8,2026-07-18
+SMMS-00047,SMMS,Signal & Telecommunication,Northern Railway,CORR-031,SIG-1807,Communication Link Failure,Medium,2,5.2,2026-06-09
+SMMS-00048,SMMS,Signal & Telecommunication,Northern Railway,CORR-038,SIG-7400,Interlocking Fault,Medium,-10,9.4,2026-07-16
+SMMS-00049,SMMS,Signal & Telecommunication,Northern Railway,CORR-030,SIG-2227,Signal Relay Fault,Medium,11,5.6,2026-05-20
+SMMS-00050,SMMS,Signal & Telecommunication,Northern Railway,CORR-009,SIG-8497,Level Crossing Fault,Medium,-5,5.7,2026-07-19
+SMMS-00051,SMMS,Signal & Telecommunication,Northern Railway,CORR-007,SIG-1126,Communication Link Failure,Medium,0,6.5,2026-06-01
+SMMS-00052,SMMS,Signal & Telecommunication,Northern Railway,CORR-008,SIG-5571,Signal Relay Fault,Medium,2,4.8,2026-05-14
+SMMS-00053,SMMS,Signal & Telecommunication,Northern Railway,CORR-009,SIG-9789,Point Machine Failure,Medium,10,7.0,2026-05-14
+SMMS-00054,SMMS,Signal & Telecommunication,Northern Railway,CORR-003,SIG-7059,Interlocking Fault,High,32,9.7,2026-06-04
+SMMS-00055,SMMS,Signal & Telecommunication,Northern Railway,CORR-007,SIG-2901,Communication Link Failure,High,2,8.7,2026-05-06
+SMMS-00056,SMMS,Signal & Telecommunication,Northern Railway,CORR-012,SIG-8926,Communication Link Failure,High,22,9.9,2026-05-04
+SMMS-00057,SMMS,Signal & Telecommunication,Northern Railway,CORR-038,SIG-1322,Point Machine Failure,Critical,44,28.4,2026-05-11
+SMMS-00058,SMMS,Signal & Telecommunication,Northern Railway,CORR-003,SIG-4363,Level Crossing Fault,Critical,7,10.7,2026-06-09
+SMMS-00059,SMMS,Signal & Telecommunication,South Central Railway,CORR-011,SIG-2163,Interlocking Fault,Low,-12,5.7,2026-05-14
+SMMS-00060,SMMS,Signal & Telecommunication,South Central Railway,CORR-016,SIG-2086,Track Circuit Fault,Low,-14,5.1,2026-06-03
+SMMS-00061,SMMS,Signal & Telecommunication,South Central Railway,CORR-001,SIG-4379,Communication Link Failure,Low,-19,3.0,2026-05-22
+SMMS-00062,SMMS,Signal & Telecommunication,South Central Railway,CORR-001,SIG-1010,Level Crossing Fault,Low,-2,5.8,2026-06-22
+SMMS-00063,SMMS,Signal & Telecommunication,South Central Railway,CORR-016,SIG-7261,Communication Link Failure,Low,-13,3.4,2026-06-22
+SMMS-00064,SMMS,Signal & Telecommunication,South Central Railway,CORR-023,SIG-6867,Signal Relay Fault,Low,-10,4.6,2026-06-21
+SMMS-00065,SMMS,Signal & Telecommunication,South Central Railway,CORR-034,SIG-8151,Track Circuit Fault,Low,4,5.0,2026-06-30
+SMMS-00066,SMMS,Signal & Telecommunication,South Central Railway,CORR-020,SIG-5683,Signal Relay Fault,Low,-17,2.1,2026-05-04
+SMMS-00067,SMMS,Signal & Telecommunication,South Central Railway,CORR-034,SIG-3085,Interlocking Fault,Low,-5,5.8,2026-07-21
+SMMS-00068,SMMS,Signal & Telecommunication,South Central Railway,CORR-027,SIG-9462,Point Machine Failure,Medium,-10,9.6,2026-05-31
+SMMS-00069,SMMS,Signal & Telecommunication,South Central Railway,CORR-020,SIG-9985,Point Machine Failure,Medium,-1,8.6,2026-07-07
+SMMS-00070,SMMS,Signal & Telecommunication,South Central Railway,CORR-040,SIG-5715,Level Crossing Fault,Medium,-7,7.1,2026-06-02
+SMMS-00071,SMMS,Signal & Telecommunication,South Central Railway,CORR-040,SIG-4410,Track Circuit Fault,Medium,4,5.2,2026-05-06
+SMMS-00072,SMMS,Signal & Telecommunication,South Central Railway,CORR-020,SIG-4668,Communication Link Failure,High,20,12.8,2026-05-27
+SMMS-00073,SMMS,Signal & Telecommunication,South Central Railway,CORR-020,SIG-2527,Communication Link Failure,High,7,14.4,2026-05-04
+SMMS-00074,SMMS,Signal & Telecommunication,South Central Railway,CORR-039,SIG-5189,Point Machine Failure,High,31,7.3,2026-07-25
+SMMS-00075,SMMS,Signal & Telecommunication,South Central Railway,CORR-027,SIG-7095,Point Machine Failure,High,30,12.6,2026-06-04
+SMMS-00076,SMMS,Signal & Telecommunication,South Central Railway,CORR-016,SIG-2719,Track Circuit Fault,High,33,11.8,2026-06-13
+SMMS-00077,SMMS,Signal & Telecommunication,South Central Railway,CORR-033,SIG-4304,Point Machine Failure,High,22,6.3,2026-05-16
+SMMS-00078,SMMS,Signal & Telecommunication,South Central Railway,CORR-027,SIG-8270,Communication Link Failure,High,24,8.0,2026-05-18
+SMMS-00079,SMMS,Signal & Telecommunication,South Central Railway,CORR-001,SIG-5752,Communication Link Failure,Critical,39,26.6,2026-06-25
+SMMS-00080,SMMS,Signal & Telecommunication,South Central Railway,CORR-039,SIG-9163,Point Machine Failure,Critical,22,28.2,2026-07-24
+SMMS-00081,SMMS,Signal & Telecommunication,Southern Railway,CORR-002,SIG-1409,Signal Relay Fault,Low,4,4.4,2026-06-21
+SMMS-00082,SMMS,Signal & Telecommunication,Southern Railway,CORR-014,SIG-4870,Point Machine Failure,Low,-5,5.5,2026-07-08
+SMMS-00083,SMMS,Signal & Telecommunication,Southern Railway,CORR-021,SIG-1808,Track Circuit Fault,Low,-20,2.6,2026-05-21
+SMMS-00084,SMMS,Signal & Telecommunication,Southern Railway,CORR-021,SIG-9924,Track Circuit Fault,Low,-15,2.1,2026-07-18
+SMMS-00085,SMMS,Signal & Telecommunication,Southern Railway,CORR-026,SIG-3578,Communication Link Failure,Medium,-7,6.0,2026-06-04
+SMMS-00086,SMMS,Signal & Telecommunication,Southern Railway,CORR-004,SIG-7837,Track Circuit Fault,Medium,2,7.3,2026-06-08
+SMMS-00087,SMMS,Signal & Telecommunication,Southern Railway,CORR-002,SIG-4135,Level Crossing Fault,Medium,-5,5.2,2026-06-23
+SMMS-00088,SMMS,Signal & Telecommunication,Southern Railway,CORR-014,SIG-9185,Interlocking Fault,Medium,9,4.1,2026-05-31
+SMMS-00089,SMMS,Signal & Telecommunication,Southern Railway,CORR-004,SIG-9870,Communication Link Failure,Medium,6,7.4,2026-05-06
+SMMS-00090,SMMS,Signal & Telecommunication,Southern Railway,CORR-004,SIG-1878,Signal Relay Fault,Medium,12,6.8,2026-06-11
+SMMS-00091,SMMS,Signal & Telecommunication,Southern Railway,CORR-010,SIG-8505,Signal Relay Fault,Medium,-6,7.9,2026-07-13
+SMMS-00092,SMMS,Signal & Telecommunication,Southern Railway,CORR-005,SIG-5308,Point Machine Failure,Medium,19,4.9,2026-05-10
+SMMS-00093,SMMS,Signal & Telecommunication,Southern Railway,CORR-021,SIG-9494,Signal Relay Fault,Medium,4,9.0,2026-07-09
+SMMS-00094,SMMS,Signal & Telecommunication,Southern Railway,CORR-026,SIG-7788,Track Circuit Fault,Medium,-3,4.9,2026-05-04
+SMMS-00095,SMMS,Signal & Telecommunication,Southern Railway,CORR-004,SIG-1423,Interlocking Fault,Medium,14,9.3,2026-07-04
+SMMS-00096,SMMS,Signal & Telecommunication,Southern Railway,CORR-014,SIG-7459,Interlocking Fault,Medium,-6,6.7,2026-07-16
+SMMS-00097,SMMS,Signal & Telecommunication,Southern Railway,CORR-002,SIG-8170,Point Machine Failure,High,32,6.4,2026-06-23
+SMMS-00098,SMMS,Signal & Telecommunication,Southern Railway,CORR-005,SIG-1251,Interlocking Fault,Critical,48,19.7,2026-07-20
+SMMS-00099,SMMS,Signal & Telecommunication,Western Railway,CORR-017,SIG-8988,Point Machine Failure,Low,8,2.5,2026-05-08
+SMMS-00100,SMMS,Signal & Telecommunication,Western Railway,CORR-036,SIG-7222,Level Crossing Fault,Low,-15,5.9,2026-07-09
+SMMS-00101,SMMS,Signal & Telecommunication,Western Railway,CORR-025,SIG-1057,Track Circuit Fault,Low,-19,3.0,2026-07-27
+SMMS-00102,SMMS,Signal & Telecommunication,Western Railway,CORR-025,SIG-3480,Point Machine Failure,Low,-20,3.8,2026-07-27
+SMMS-00103,SMMS,Signal & Telecommunication,Western Railway,CORR-017,SIG-2009,Communication Link Failure,Low,-10,2.9,2026-06-22
+SMMS-00104,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-8874,Level Crossing Fault,Low,-5,4.0,2026-05-14
+SMMS-00105,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-6187,Track Circuit Fault,Low,-18,5.0,2026-06-10
+SMMS-00106,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-5966,Point Machine Failure,Low,-16,4.1,2026-06-07
+SMMS-00107,SMMS,Signal & Telecommunication,Western Railway,CORR-013,SIG-8671,Track Circuit Fault,Low,-6,3.1,2026-06-06
+SMMS-00108,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-6866,Point Machine Failure,Low,-6,3.0,2026-05-21
+SMMS-00109,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-9697,Track Circuit Fault,Medium,12,5.9,2026-05-31
+SMMS-00110,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-7467,Signal Relay Fault,Medium,-7,9.0,2026-05-31
+SMMS-00111,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-3890,Signal Relay Fault,High,20,9.1,2026-05-04
+SMMS-00112,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-6898,Communication Link Failure,High,33,14.7,2026-05-05
+SMMS-00113,SMMS,Signal & Telecommunication,Western Railway,CORR-036,SIG-9300,Communication Link Failure,High,16,7.7,2026-06-07
+SMMS-00114,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-8415,Signal Relay Fault,High,17,9.5,2026-06-08
+SMMS-00115,SMMS,Signal & Telecommunication,Western Railway,CORR-025,SIG-5709,Interlocking Fault,High,16,13.7,2026-06-20
+SMMS-00116,SMMS,Signal & Telecommunication,Western Railway,CORR-036,SIG-1790,Signal Relay Fault,High,1,6.3,2026-07-03
+SMMS-00117,SMMS,Signal & Telecommunication,Western Railway,CORR-017,SIG-5634,Level Crossing Fault,High,0,12.7,2026-07-26
+SMMS-00118,SMMS,Signal & Telecommunication,Western Railway,CORR-025,SIG-7729,Signal Relay Fault,Critical,40,14.7,2026-06-04
+SMMS-00119,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-3104,Signal Relay Fault,Critical,39,28.6,2026-05-04

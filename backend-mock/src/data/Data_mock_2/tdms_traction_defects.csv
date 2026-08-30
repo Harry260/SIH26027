@@ -1,0 +1,100 @@
+request_id,source_system,department,region,corridor_id,asset_id,defect_type,severity,overdue_days,estimated_duration_hours,detected_date
+TDMS-00001,TDMS,Traction Distribution,Central Railway,CORR-029,TRAC-7895,Feeder Fault,Low,-8,3.3,2026-06-28
+TDMS-00002,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-2516,Circuit Breaker Fault,Low,4,3.6,2026-05-17
+TDMS-00003,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-5077,Circuit Breaker Fault,Low,-18,5.6,2026-07-04
+TDMS-00004,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-8538,Feeder Fault,Low,2,5.0,2026-07-10
+TDMS-00005,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-8553,Earthing Fault,Low,-14,5.9,2026-06-18
+TDMS-00006,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-6199,Circuit Breaker Fault,Medium,-7,5.3,2026-06-20
+TDMS-00007,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-2561,Traction Substation Fault,Medium,19,4.2,2026-05-17
+TDMS-00008,TDMS,Traction Distribution,Central Railway,CORR-029,TRAC-8335,Insulator Damage,Medium,8,9.2,2026-05-26
+TDMS-00009,TDMS,Traction Distribution,Central Railway,CORR-029,TRAC-9968,Earthing Fault,Medium,-1,8.5,2026-05-10
+TDMS-00010,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-2536,Earthing Fault,High,19,11.2,2026-06-26
+TDMS-00011,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-8217,Circuit Breaker Fault,High,5,8.9,2026-05-06
+TDMS-00012,TDMS,Traction Distribution,Central Railway,CORR-029,TRAC-4067,Feeder Fault,High,8,9.2,2026-05-24
+TDMS-00013,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-7247,OHE Wire Wear,Critical,27,16.2,2026-05-17
+TDMS-00014,TDMS,Traction Distribution,Central Railway,CORR-022,TRAC-4562,Feeder Fault,Critical,29,13.7,2026-06-22
+TDMS-00015,TDMS,Traction Distribution,Eastern Railway,CORR-015,TRAC-3123,Earthing Fault,Low,5,2.7,2026-07-15
+TDMS-00016,TDMS,Traction Distribution,Eastern Railway,CORR-032,TRAC-2254,OHE Wire Wear,Low,-7,4.1,2026-06-02
+TDMS-00017,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-7394,Feeder Fault,Low,-9,2.0,2026-06-20
+TDMS-00018,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-6728,Feeder Fault,Low,-1,2.5,2026-05-28
+TDMS-00019,TDMS,Traction Distribution,Eastern Railway,CORR-032,TRAC-5886,Traction Substation Fault,Low,5,4.3,2026-07-28
+TDMS-00020,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-8808,Feeder Fault,Low,-5,3.2,2026-07-17
+TDMS-00021,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-9624,OHE Wire Wear,Medium,14,8.0,2026-05-12
+TDMS-00022,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-6023,Earthing Fault,Medium,-7,7.3,2026-06-20
+TDMS-00023,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-2092,Traction Substation Fault,Medium,-5,6.2,2026-07-19
+TDMS-00024,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-3292,Earthing Fault,Medium,7,4.8,2026-05-28
+TDMS-00025,TDMS,Traction Distribution,Eastern Railway,CORR-032,TRAC-4690,Traction Substation Fault,Medium,-8,8.2,2026-05-20
+TDMS-00026,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-7137,Traction Substation Fault,Medium,14,8.9,2026-06-10
+TDMS-00027,TDMS,Traction Distribution,Eastern Railway,CORR-019,TRAC-4622,Insulator Damage,Medium,11,4.8,2026-07-18
+TDMS-00028,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-2882,OHE Wire Wear,Medium,13,7.0,2026-07-11
+TDMS-00029,TDMS,Traction Distribution,Eastern Railway,CORR-019,TRAC-8199,OHE Wire Wear,High,26,10.7,2026-06-12
+TDMS-00030,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-1214,Insulator Damage,High,28,15.2,2026-05-11
+TDMS-00031,TDMS,Traction Distribution,Eastern Railway,CORR-019,TRAC-7399,Feeder Fault,High,14,13.9,2026-06-26
+TDMS-00032,TDMS,Traction Distribution,Eastern Railway,CORR-032,TRAC-4861,Circuit Breaker Fault,Critical,38,23.7,2026-06-29
+TDMS-00033,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-9651,Insulator Damage,Critical,51,27.0,2026-06-13
+TDMS-00034,TDMS,Traction Distribution,Northern Railway,CORR-038,TRAC-1922,OHE Wire Wear,Low,-14,5.7,2026-06-29
+TDMS-00035,TDMS,Traction Distribution,Northern Railway,CORR-030,TRAC-4929,Traction Substation Fault,Low,4,3.3,2026-07-04
+TDMS-00036,TDMS,Traction Distribution,Northern Railway,CORR-012,TRAC-9855,OHE Wire Wear,Low,-13,5.0,2026-05-11
+TDMS-00037,TDMS,Traction Distribution,Northern Railway,CORR-030,TRAC-1462,OHE Wire Wear,Low,-20,5.8,2026-07-06
+TDMS-00038,TDMS,Traction Distribution,Northern Railway,CORR-007,TRAC-2301,Feeder Fault,Medium,6,7.4,2026-06-26
+TDMS-00039,TDMS,Traction Distribution,Northern Railway,CORR-007,TRAC-2118,Traction Substation Fault,Medium,4,4.4,2026-06-26
+TDMS-00040,TDMS,Traction Distribution,Northern Railway,CORR-008,TRAC-8613,Circuit Breaker Fault,Medium,-6,7.6,2026-07-21
+TDMS-00041,TDMS,Traction Distribution,Northern Railway,CORR-009,TRAC-8733,Earthing Fault,High,15,15.2,2026-06-03
+TDMS-00042,TDMS,Traction Distribution,Northern Railway,CORR-009,TRAC-1250,OHE Wire Wear,High,13,8.0,2026-05-29
+TDMS-00043,TDMS,Traction Distribution,Northern Railway,CORR-030,TRAC-2048,Traction Substation Fault,High,0,14.8,2026-07-07
+TDMS-00044,TDMS,Traction Distribution,Northern Railway,CORR-008,TRAC-9311,Circuit Breaker Fault,High,31,10.0,2026-07-17
+TDMS-00045,TDMS,Traction Distribution,Northern Railway,CORR-031,TRAC-6417,Traction Substation Fault,Critical,50,24.2,2026-05-27
+TDMS-00046,TDMS,Traction Distribution,Northern Railway,CORR-008,TRAC-7404,Earthing Fault,Critical,11,27.2,2026-05-11
+TDMS-00047,TDMS,Traction Distribution,Northern Railway,CORR-008,TRAC-8082,Circuit Breaker Fault,Critical,36,28.7,2026-06-08
+TDMS-00048,TDMS,Traction Distribution,Northern Railway,CORR-012,TRAC-4426,Traction Substation Fault,Critical,29,25.7,2026-05-23
+TDMS-00049,TDMS,Traction Distribution,Northern Railway,CORR-003,TRAC-5945,OHE Wire Wear,Critical,35,23.1,2026-05-17
+TDMS-00050,TDMS,Traction Distribution,South Central Railway,CORR-033,TRAC-7149,Circuit Breaker Fault,Low,-5,2.1,2026-06-09
+TDMS-00051,TDMS,Traction Distribution,South Central Railway,CORR-016,TRAC-6038,Earthing Fault,Low,-10,5.9,2026-05-07
+TDMS-00052,TDMS,Traction Distribution,South Central Railway,CORR-034,TRAC-6106,Insulator Damage,Low,7,5.8,2026-05-12
+TDMS-00053,TDMS,Traction Distribution,South Central Railway,CORR-027,TRAC-9293,Circuit Breaker Fault,Low,-4,4.3,2026-06-17
+TDMS-00054,TDMS,Traction Distribution,South Central Railway,CORR-001,TRAC-4413,Earthing Fault,Medium,6,8.8,2026-05-18
+TDMS-00055,TDMS,Traction Distribution,South Central Railway,CORR-033,TRAC-2126,Traction Substation Fault,Medium,0,7.8,2026-07-12
+TDMS-00056,TDMS,Traction Distribution,South Central Railway,CORR-020,TRAC-3566,Traction Substation Fault,Medium,-10,7.1,2026-07-07
+TDMS-00057,TDMS,Traction Distribution,South Central Railway,CORR-001,TRAC-8787,Earthing Fault,Medium,-1,9.8,2026-07-19
+TDMS-00058,TDMS,Traction Distribution,South Central Railway,CORR-040,TRAC-4221,Earthing Fault,Medium,-2,8.2,2026-06-21
+TDMS-00059,TDMS,Traction Distribution,South Central Railway,CORR-033,TRAC-6216,Earthing Fault,Medium,9,9.7,2026-05-18
+TDMS-00060,TDMS,Traction Distribution,South Central Railway,CORR-040,TRAC-9804,Earthing Fault,High,23,15.7,2026-05-25
+TDMS-00061,TDMS,Traction Distribution,South Central Railway,CORR-023,TRAC-8128,Circuit Breaker Fault,High,18,12.7,2026-06-22
+TDMS-00062,TDMS,Traction Distribution,South Central Railway,CORR-033,TRAC-5479,Traction Substation Fault,High,8,10.2,2026-06-22
+TDMS-00063,TDMS,Traction Distribution,South Central Railway,CORR-039,TRAC-8157,Circuit Breaker Fault,High,34,7.4,2026-05-16
+TDMS-00064,TDMS,Traction Distribution,South Central Railway,CORR-027,TRAC-7455,Earthing Fault,High,3,13.2,2026-06-09
+TDMS-00065,TDMS,Traction Distribution,South Central Railway,CORR-027,TRAC-9836,Insulator Damage,Critical,56,14.8,2026-05-07
+TDMS-00066,TDMS,Traction Distribution,South Central Railway,CORR-040,TRAC-2410,OHE Wire Wear,Critical,44,22.1,2026-05-19
+TDMS-00067,TDMS,Traction Distribution,South Central Railway,CORR-023,TRAC-8855,Traction Substation Fault,Critical,38,22.9,2026-06-24
+TDMS-00068,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-7833,Feeder Fault,Low,-15,5.7,2026-07-27
+TDMS-00069,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-2299,Feeder Fault,Low,-18,4.9,2026-06-22
+TDMS-00070,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-2738,Circuit Breaker Fault,Low,-4,5.9,2026-06-05
+TDMS-00071,TDMS,Traction Distribution,Southern Railway,CORR-010,TRAC-4335,Circuit Breaker Fault,Low,-8,2.2,2026-07-26
+TDMS-00072,TDMS,Traction Distribution,Southern Railway,CORR-005,TRAC-7864,Traction Substation Fault,Low,-15,2.1,2026-07-18
+TDMS-00073,TDMS,Traction Distribution,Southern Railway,CORR-010,TRAC-2669,Insulator Damage,Low,7,5.6,2026-06-06
+TDMS-00074,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-9221,Earthing Fault,Low,-13,5.6,2026-07-01
+TDMS-00075,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-4071,OHE Wire Wear,Medium,-3,9.9,2026-06-09
+TDMS-00076,TDMS,Traction Distribution,Southern Railway,CORR-021,TRAC-2195,Feeder Fault,Medium,-2,10.0,2026-06-16
+TDMS-00077,TDMS,Traction Distribution,Southern Railway,CORR-021,TRAC-3454,Insulator Damage,Medium,-1,9.2,2026-06-02
+TDMS-00078,TDMS,Traction Distribution,Southern Railway,CORR-010,TRAC-5683,Traction Substation Fault,Medium,0,8.6,2026-06-20
+TDMS-00079,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-9359,Circuit Breaker Fault,High,5,8.3,2026-05-26
+TDMS-00080,TDMS,Traction Distribution,Southern Railway,CORR-010,TRAC-6731,Insulator Damage,High,19,8.6,2026-05-30
+TDMS-00081,TDMS,Traction Distribution,Southern Railway,CORR-002,TRAC-6686,Circuit Breaker Fault,High,26,6.8,2026-05-08
+TDMS-00082,TDMS,Traction Distribution,Southern Railway,CORR-002,TRAC-1319,Feeder Fault,Critical,56,29.4,2026-05-05
+TDMS-00083,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-8605,Feeder Fault,Low,-4,2.3,2026-05-27
+TDMS-00084,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-7304,Traction Substation Fault,Low,-14,4.3,2026-07-31
+TDMS-00085,TDMS,Traction Distribution,Western Railway,CORR-025,TRAC-7055,Insulator Damage,Low,-9,2.6,2026-07-13
+TDMS-00086,TDMS,Traction Distribution,Western Railway,CORR-035,TRAC-8891,Earthing Fault,Low,-5,2.1,2026-05-22
+TDMS-00087,TDMS,Traction Distribution,Western Railway,CORR-017,TRAC-2030,Insulator Damage,Low,-6,2.5,2026-05-11
+TDMS-00088,TDMS,Traction Distribution,Western Railway,CORR-017,TRAC-1298,Traction Substation Fault,Low,0,5.1,2026-07-04
+TDMS-00089,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-7588,OHE Wire Wear,High,4,6.7,2026-06-13
+TDMS-00090,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-5104,Earthing Fault,High,27,6.1,2026-05-11
+TDMS-00091,TDMS,Traction Distribution,Western Railway,CORR-025,TRAC-6214,Insulator Damage,High,25,7.5,2026-07-06
+TDMS-00092,TDMS,Traction Distribution,Western Railway,CORR-035,TRAC-2032,Insulator Damage,High,4,10.2,2026-05-08
+TDMS-00093,TDMS,Traction Distribution,Western Railway,CORR-018,TRAC-1304,Traction Substation Fault,High,14,14.0,2026-06-03
+TDMS-00094,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-9289,Feeder Fault,High,8,8.8,2026-05-25
+TDMS-00095,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-9692,Earthing Fault,High,31,12.3,2026-05-29
+TDMS-00096,TDMS,Traction Distribution,Western Railway,CORR-018,TRAC-2832,Feeder Fault,High,25,10.1,2026-06-09
+TDMS-00097,TDMS,Traction Distribution,Western Railway,CORR-018,TRAC-5082,Earthing Fault,Critical,40,26.9,2026-06-12
+TDMS-00098,TDMS,Traction Distribution,Western Railway,CORR-017,TRAC-8608,Traction Substation Fault,Critical,11,18.0,2026-07-15
+TDMS-00099,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-1183,Feeder Fault,Critical,33,26.1,2026-07-16

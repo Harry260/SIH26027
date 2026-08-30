@@ -1,0 +1,385 @@
+request_id,source_system,department,region,corridor_id,asset_id,defect_type,severity,overdue_days,estimated_duration_hours,detected_date
+TMS-00001,TMS,Engineering,Central Railway,CORR-028,TRACK-3373,Rail Corrugation,Low,-10,4.1,2026-06-15
+TMS-00002,TMS,Engineering,Central Railway,CORR-029,TRACK-9209,Rail Fracture,Low,-15,2.5,2026-07-21
+TMS-00003,TMS,Engineering,Central Railway,CORR-022,TRACK-9993,Ballast Degradation,Low,-15,4.1,2026-05-23
+TMS-00004,TMS,Engineering,Central Railway,CORR-028,TRACK-6239,Rail Fracture,Low,6,2.5,2026-06-14
+TMS-00005,TMS,Engineering,Central Railway,CORR-022,TRACK-7013,Fastening Failure,Low,-12,4.4,2026-07-09
+TMS-00006,TMS,Engineering,Central Railway,CORR-029,TRACK-4827,Rail Fracture,Low,9,3.9,2026-07-26
+TMS-00007,TMS,Engineering,Central Railway,CORR-029,TRACK-3407,Ballast Degradation,Low,-6,4.5,2026-05-13
+TMS-00008,TMS,Engineering,Central Railway,CORR-022,TRACK-6834,Weld Defect,Low,-19,2.0,2026-05-23
+TMS-00009,TMS,Engineering,Central Railway,CORR-022,TRACK-8436,Ballast Degradation,Low,-17,2.8,2026-07-09
+TMS-00010,TMS,Engineering,Central Railway,CORR-028,TRACK-5379,Fastening Failure,Medium,0,8.8,2026-06-24
+TMS-00011,TMS,Engineering,Central Railway,CORR-022,TRACK-2688,Rail Corrugation,Medium,-2,8.6,2026-06-29
+TMS-00012,TMS,Engineering,Central Railway,CORR-029,TRACK-2593,Track Geometry Defect,Medium,1,9.5,2026-07-02
+TMS-00013,TMS,Engineering,Central Railway,CORR-022,TRACK-4880,Weld Defect,Medium,-8,9.1,2026-07-20
+TMS-00014,TMS,Engineering,Central Railway,CORR-022,TRACK-7173,Fastening Failure,High,30,10.7,2026-05-28
+TMS-00015,TMS,Engineering,Central Railway,CORR-022,TRACK-8332,Weld Defect,High,1,15.6,2026-05-19
+TMS-00016,TMS,Engineering,Central Railway,CORR-028,TRACK-2263,Fastening Failure,High,14,12.8,2026-07-07
+TMS-00017,TMS,Engineering,Central Railway,CORR-029,TRACK-8699,Rail Fracture,High,10,15.1,2026-05-11
+TMS-00018,TMS,Engineering,Central Railway,CORR-028,TRACK-2670,Track Geometry Defect,High,33,13.3,2026-07-04
+TMS-00019,TMS,Engineering,Central Railway,CORR-029,TRACK-5245,Ballast Degradation,High,3,13.4,2026-07-14
+TMS-00020,TMS,Engineering,Central Railway,CORR-028,TRACK-2374,Weld Defect,High,10,6.8,2026-06-06
+TMS-00021,TMS,Engineering,Central Railway,CORR-029,TRACK-3225,Weld Defect,Critical,41,19.9,2026-07-15
+TMS-00022,TMS,Engineering,Central Railway,CORR-028,TRACK-6920,Rail Corrugation,Critical,32,11.7,2026-07-22
+TMS-00023,TMS,Engineering,Central Railway,CORR-022,TRACK-4885,Rail Fracture,Critical,34,21.2,2026-05-17
+TMS-00024,TMS,Engineering,Eastern Railway,CORR-019,TRACK-7432,Rail Fracture,Low,-11,3.0,2026-06-23
+TMS-00025,TMS,Engineering,Eastern Railway,CORR-006,TRACK-2608,Fastening Failure,Low,-3,3.4,2026-06-06
+TMS-00026,TMS,Engineering,Eastern Railway,CORR-024,TRACK-7507,Track Geometry Defect,Low,1,2.7,2026-06-06
+TMS-00027,TMS,Engineering,Eastern Railway,CORR-006,TRACK-3755,Ballast Degradation,Low,-7,4.8,2026-05-20
+TMS-00028,TMS,Engineering,Eastern Railway,CORR-015,TRACK-1093,Track Geometry Defect,Low,-4,4.5,2026-05-24
+TMS-00029,TMS,Engineering,Eastern Railway,CORR-024,TRACK-7513,Rail Corrugation,Low,6,3.9,2026-06-20
+TMS-00030,TMS,Engineering,Eastern Railway,CORR-019,TRACK-9631,Ballast Degradation,Low,-8,3.6,2026-06-26
+TMS-00031,TMS,Engineering,Eastern Railway,CORR-006,TRACK-1466,Weld Defect,Low,-20,5.6,2026-06-13
+TMS-00032,TMS,Engineering,Eastern Railway,CORR-006,TRACK-3266,Rail Fracture,Low,-16,2.1,2026-05-15
+TMS-00033,TMS,Engineering,Eastern Railway,CORR-015,TRACK-9030,Track Geometry Defect,Low,5,5.1,2026-05-06
+TMS-00034,TMS,Engineering,Eastern Railway,CORR-024,TRACK-3446,Rail Corrugation,Medium,5,8.6,2026-07-02
+TMS-00035,TMS,Engineering,Eastern Railway,CORR-006,TRACK-6740,Fastening Failure,Medium,-5,9.8,2026-07-15
+TMS-00036,TMS,Engineering,Eastern Railway,CORR-006,TRACK-6428,Ballast Degradation,Medium,18,5.7,2026-06-07
+TMS-00037,TMS,Engineering,Eastern Railway,CORR-006,TRACK-1789,Fastening Failure,Medium,-5,4.4,2026-07-23
+TMS-00038,TMS,Engineering,Eastern Railway,CORR-024,TRACK-1080,Ballast Degradation,Medium,11,6.1,2026-07-18
+TMS-00039,TMS,Engineering,Eastern Railway,CORR-019,TRACK-3543,Track Geometry Defect,Medium,-8,8.5,2026-07-02
+TMS-00040,TMS,Engineering,Eastern Railway,CORR-019,TRACK-4418,Track Geometry Defect,Medium,-1,6.6,2026-07-18
+TMS-00041,TMS,Engineering,Eastern Railway,CORR-024,TRACK-4434,Rail Corrugation,High,27,11.2,2026-07-11
+TMS-00042,TMS,Engineering,Eastern Railway,CORR-024,TRACK-1653,Ballast Degradation,High,9,7.5,2026-08-01
+TMS-00043,TMS,Engineering,Eastern Railway,CORR-006,TRACK-7453,Weld Defect,High,6,6.7,2026-06-27
+TMS-00044,TMS,Engineering,Eastern Railway,CORR-032,TRACK-5562,Track Geometry Defect,High,14,13.3,2026-07-09
+TMS-00045,TMS,Engineering,Eastern Railway,CORR-024,TRACK-6502,Fastening Failure,High,17,11.6,2026-05-14
+TMS-00046,TMS,Engineering,Eastern Railway,CORR-032,TRACK-9430,Weld Defect,High,17,9.6,2026-07-07
+TMS-00047,TMS,Engineering,Eastern Railway,CORR-015,TRACK-2038,Weld Defect,High,23,14.1,2026-05-29
+TMS-00048,TMS,Engineering,Eastern Railway,CORR-006,TRACK-2864,Track Geometry Defect,High,1,9.9,2026-06-12
+TMS-00049,TMS,Engineering,Eastern Railway,CORR-019,TRACK-3706,Track Geometry Defect,High,19,14.0,2026-07-04
+TMS-00050,TMS,Engineering,Eastern Railway,CORR-032,TRACK-6198,Rail Fracture,High,33,9.1,2026-06-05
+TMS-00051,TMS,Engineering,Eastern Railway,CORR-015,TRACK-4296,Ballast Degradation,Critical,58,20.9,2026-08-01
+TMS-00052,TMS,Engineering,Eastern Railway,CORR-032,TRACK-3083,Ballast Degradation,Critical,43,11.5,2026-07-31
+TMS-00053,TMS,Engineering,Eastern Railway,CORR-006,TRACK-3663,Weld Defect,Critical,46,25.8,2026-05-23
+TMS-00054,TMS,Engineering,Eastern Railway,CORR-024,TRACK-8678,Track Geometry Defect,Critical,32,14.4,2026-07-24
+TMS-00055,TMS,Engineering,Eastern Railway,CORR-015,TRACK-7370,Weld Defect,Critical,33,23.5,2026-06-14
+TMS-00056,TMS,Engineering,Northern Railway,CORR-012,TRACK-8551,Rail Fracture,Low,-10,5.6,2026-07-11
+TMS-00057,TMS,Engineering,Northern Railway,CORR-038,TRACK-5630,Rail Fracture,Low,4,3.8,2026-05-07
+TMS-00058,TMS,Engineering,Northern Railway,CORR-031,TRACK-8809,Rail Corrugation,Low,-11,2.6,2026-07-08
+TMS-00059,TMS,Engineering,Northern Railway,CORR-008,TRACK-7800,Rail Fracture,Low,3,5.1,2026-07-27
+TMS-00060,TMS,Engineering,Northern Railway,CORR-031,TRACK-5454,Ballast Degradation,Low,3,5.2,2026-05-31
+TMS-00061,TMS,Engineering,Northern Railway,CORR-003,TRACK-6311,Rail Corrugation,Low,-17,4.6,2026-06-14
+TMS-00062,TMS,Engineering,Northern Railway,CORR-003,TRACK-4019,Track Geometry Defect,Low,-16,5.4,2026-06-03
+TMS-00063,TMS,Engineering,Northern Railway,CORR-030,TRACK-6969,Fastening Failure,Low,-17,4.9,2026-07-02
+TMS-00064,TMS,Engineering,Northern Railway,CORR-007,TRACK-1318,Rail Fracture,Low,-8,5.5,2026-06-01
+TMS-00065,TMS,Engineering,Northern Railway,CORR-012,TRACK-1509,Ballast Degradation,Low,4,3.7,2026-07-19
+TMS-00066,TMS,Engineering,Northern Railway,CORR-009,TRACK-2402,Rail Corrugation,Low,-8,5.0,2026-05-15
+TMS-00067,TMS,Engineering,Northern Railway,CORR-038,TRACK-3620,Ballast Degradation,Low,-3,6.0,2026-06-27
+TMS-00068,TMS,Engineering,Northern Railway,CORR-003,TRACK-7838,Fastening Failure,Medium,5,7.6,2026-05-29
+TMS-00069,TMS,Engineering,Northern Railway,CORR-031,TRACK-6296,Rail Corrugation,Medium,10,8.8,2026-06-03
+TMS-00070,TMS,Engineering,Northern Railway,CORR-012,TRACK-8873,Rail Corrugation,Medium,17,4.9,2026-07-23
+TMS-00071,TMS,Engineering,Northern Railway,CORR-031,TRACK-2626,Rail Fracture,Medium,-7,4.1,2026-06-29
+TMS-00072,TMS,Engineering,Northern Railway,CORR-009,TRACK-1736,Weld Defect,Medium,19,5.9,2026-06-15
+TMS-00073,TMS,Engineering,Northern Railway,CORR-003,TRACK-8539,Ballast Degradation,Medium,5,7.5,2026-06-02
+TMS-00074,TMS,Engineering,Northern Railway,CORR-007,TRACK-4783,Weld Defect,Medium,11,4.8,2026-05-10
+TMS-00075,TMS,Engineering,Northern Railway,CORR-008,TRACK-5984,Fastening Failure,High,0,15.6,2026-05-30
+TMS-00076,TMS,Engineering,Northern Railway,CORR-031,TRACK-5075,Rail Fracture,High,12,9.1,2026-05-21
+TMS-00077,TMS,Engineering,Northern Railway,CORR-007,TRACK-7073,Fastening Failure,High,0,7.0,2026-05-17
+TMS-00078,TMS,Engineering,Northern Railway,CORR-008,TRACK-4838,Ballast Degradation,High,4,11.3,2026-05-25
+TMS-00079,TMS,Engineering,Northern Railway,CORR-030,TRACK-5375,Weld Defect,High,15,6.6,2026-07-16
+TMS-00080,TMS,Engineering,Northern Railway,CORR-008,TRACK-7876,Rail Corrugation,High,14,7.1,2026-06-15
+TMS-00081,TMS,Engineering,Northern Railway,CORR-003,TRACK-3189,Ballast Degradation,High,27,8.2,2026-06-26
+TMS-00082,TMS,Engineering,South Central Railway,CORR-040,TRACK-3522,Weld Defect,Low,2,5.7,2026-05-05
+TMS-00083,TMS,Engineering,South Central Railway,CORR-016,TRACK-1624,Ballast Degradation,Low,-17,5.6,2026-06-21
+TMS-00084,TMS,Engineering,South Central Railway,CORR-039,TRACK-1248,Rail Corrugation,Low,8,5.1,2026-07-10
+TMS-00085,TMS,Engineering,South Central Railway,CORR-039,TRACK-9572,Ballast Degradation,Low,8,2.1,2026-05-28
+TMS-00086,TMS,Engineering,South Central Railway,CORR-039,TRACK-1879,Rail Corrugation,Low,-15,3.3,2026-05-17
+TMS-00087,TMS,Engineering,South Central Railway,CORR-016,TRACK-6452,Rail Fracture,Low,-7,4.5,2026-05-17
+TMS-00088,TMS,Engineering,South Central Railway,CORR-023,TRACK-1620,Weld Defect,Low,-17,3.1,2026-05-22
+TMS-00089,TMS,Engineering,South Central Railway,CORR-039,TRACK-4524,Ballast Degradation,Low,5,5.6,2026-06-09
+TMS-00090,TMS,Engineering,South Central Railway,CORR-034,TRACK-8563,Ballast Degradation,Low,-6,4.5,2026-07-05
+TMS-00091,TMS,Engineering,South Central Railway,CORR-016,TRACK-5694,Ballast Degradation,Medium,-6,7.2,2026-05-19
+TMS-00092,TMS,Engineering,South Central Railway,CORR-039,TRACK-5474,Track Geometry Defect,Medium,-2,9.1,2026-07-04
+TMS-00093,TMS,Engineering,South Central Railway,CORR-011,TRACK-7226,Rail Corrugation,Medium,-10,4.0,2026-07-19
+TMS-00094,TMS,Engineering,South Central Railway,CORR-011,TRACK-3907,Rail Fracture,Medium,-2,9.6,2026-06-09
+TMS-00095,TMS,Engineering,South Central Railway,CORR-040,TRACK-7187,Ballast Degradation,Medium,-1,4.6,2026-06-05
+TMS-00096,TMS,Engineering,South Central Railway,CORR-011,TRACK-1518,Weld Defect,Medium,12,9.1,2026-07-08
+TMS-00097,TMS,Engineering,South Central Railway,CORR-023,TRACK-3449,Rail Corrugation,High,18,10.8,2026-05-10
+TMS-00098,TMS,Engineering,South Central Railway,CORR-020,TRACK-5151,Track Geometry Defect,High,7,10.2,2026-05-17
+TMS-00099,TMS,Engineering,South Central Railway,CORR-039,TRACK-8816,Rail Corrugation,High,27,15.8,2026-05-18
+TMS-00100,TMS,Engineering,South Central Railway,CORR-039,TRACK-5575,Fastening Failure,High,7,8.0,2026-06-15
+TMS-00101,TMS,Engineering,South Central Railway,CORR-040,TRACK-8493,Weld Defect,High,30,8.2,2026-05-17
+TMS-00102,TMS,Engineering,South Central Railway,CORR-033,TRACK-1267,Rail Corrugation,High,2,8.9,2026-06-05
+TMS-00103,TMS,Engineering,South Central Railway,CORR-016,TRACK-1647,Track Geometry Defect,High,2,7.7,2026-05-17
+TMS-00104,TMS,Engineering,South Central Railway,CORR-040,TRACK-7110,Rail Corrugation,High,21,9.8,2026-05-28
+TMS-00105,TMS,Engineering,South Central Railway,CORR-040,TRACK-2662,Weld Defect,High,16,15.1,2026-05-08
+TMS-00106,TMS,Engineering,South Central Railway,CORR-040,TRACK-2034,Rail Fracture,High,16,12.2,2026-07-19
+TMS-00107,TMS,Engineering,South Central Railway,CORR-020,TRACK-1582,Rail Fracture,High,13,10.1,2026-07-16
+TMS-00108,TMS,Engineering,South Central Railway,CORR-034,TRACK-7743,Weld Defect,High,8,15.3,2026-06-01
+TMS-00109,TMS,Engineering,South Central Railway,CORR-020,TRACK-9802,Weld Defect,Critical,17,25.1,2026-05-14
+TMS-00110,TMS,Engineering,South Central Railway,CORR-023,TRACK-9450,Rail Fracture,Critical,51,19.5,2026-05-31
+TMS-00111,TMS,Engineering,South Central Railway,CORR-001,TRACK-3245,Track Geometry Defect,Critical,52,18.9,2026-06-30
+TMS-00112,TMS,Engineering,South Central Railway,CORR-011,TRACK-1088,Rail Corrugation,Critical,20,10.1,2026-07-10
+TMS-00113,TMS,Engineering,Southern Railway,CORR-026,TRACK-2002,Track Geometry Defect,Low,-6,4.3,2026-06-06
+TMS-00114,TMS,Engineering,Southern Railway,CORR-014,TRACK-5294,Track Geometry Defect,Low,-20,4.7,2026-05-18
+TMS-00115,TMS,Engineering,Southern Railway,CORR-021,TRACK-2729,Rail Corrugation,Low,1,5.6,2026-06-26
+TMS-00116,TMS,Engineering,Southern Railway,CORR-005,TRACK-1676,Rail Fracture,Low,-18,3.4,2026-06-22
+TMS-00117,TMS,Engineering,Southern Railway,CORR-026,TRACK-8709,Ballast Degradation,Low,-15,4.5,2026-07-31
+TMS-00118,TMS,Engineering,Southern Railway,CORR-026,TRACK-5024,Track Geometry Defect,Low,1,2.2,2026-05-09
+TMS-00119,TMS,Engineering,Southern Railway,CORR-002,TRACK-4469,Fastening Failure,Low,-7,2.7,2026-07-05
+TMS-00120,TMS,Engineering,Southern Railway,CORR-005,TRACK-5323,Track Geometry Defect,Low,-17,5.3,2026-05-30
+TMS-00121,TMS,Engineering,Southern Railway,CORR-010,TRACK-4497,Rail Corrugation,Medium,9,8.2,2026-05-19
+TMS-00122,TMS,Engineering,Southern Railway,CORR-010,TRACK-2765,Weld Defect,Medium,6,6.4,2026-07-15
+TMS-00123,TMS,Engineering,Southern Railway,CORR-021,TRACK-2295,Rail Corrugation,Medium,-5,4.5,2026-05-31
+TMS-00124,TMS,Engineering,Southern Railway,CORR-010,TRACK-9873,Rail Fracture,Medium,-7,8.4,2026-07-21
+TMS-00125,TMS,Engineering,Southern Railway,CORR-014,TRACK-9834,Rail Fracture,Medium,-10,7.7,2026-07-22
+TMS-00126,TMS,Engineering,Southern Railway,CORR-002,TRACK-8089,Weld Defect,Medium,7,4.0,2026-06-13
+TMS-00127,TMS,Engineering,Southern Railway,CORR-021,TRACK-5791,Rail Fracture,Medium,8,4.1,2026-06-14
+TMS-00128,TMS,Engineering,Southern Railway,CORR-021,TRACK-3075,Rail Fracture,Medium,-2,8.9,2026-05-13
+TMS-00129,TMS,Engineering,Southern Railway,CORR-026,TRACK-9805,Ballast Degradation,High,24,8.7,2026-06-16
+TMS-00130,TMS,Engineering,Southern Railway,CORR-010,TRACK-7901,Weld Defect,High,7,10.6,2026-07-09
+TMS-00131,TMS,Engineering,Southern Railway,CORR-026,TRACK-7151,Track Geometry Defect,High,4,14.9,2026-05-22
+TMS-00132,TMS,Engineering,Southern Railway,CORR-004,TRACK-9289,Ballast Degradation,High,4,10.6,2026-07-06
+TMS-00133,TMS,Engineering,Southern Railway,CORR-004,TRACK-9436,Track Geometry Defect,High,34,11.6,2026-05-07
+TMS-00134,TMS,Engineering,Southern Railway,CORR-002,TRACK-7840,Rail Corrugation,High,18,10.0,2026-07-10
+TMS-00135,TMS,Engineering,Southern Railway,CORR-010,TRACK-8604,Weld Defect,High,22,10.6,2026-05-31
+TMS-00136,TMS,Engineering,Southern Railway,CORR-026,TRACK-4473,Rail Fracture,Critical,57,26.1,2026-05-04
+TMS-00137,TMS,Engineering,Southern Railway,CORR-002,TRACK-1708,Rail Corrugation,Critical,46,11.2,2026-05-15
+TMS-00138,TMS,Engineering,Western Railway,CORR-017,TRACK-5165,Ballast Degradation,Low,-18,2.0,2026-05-04
+TMS-00139,TMS,Engineering,Western Railway,CORR-036,TRACK-1076,Weld Defect,Low,-3,4.8,2026-07-10
+TMS-00140,TMS,Engineering,Western Railway,CORR-036,TRACK-3684,Ballast Degradation,Low,-10,2.5,2026-06-06
+TMS-00141,TMS,Engineering,Western Railway,CORR-035,TRACK-2199,Rail Fracture,Low,-6,5.1,2026-07-02
+TMS-00142,TMS,Engineering,Western Railway,CORR-037,TRACK-5925,Rail Fracture,Low,0,4.0,2026-07-20
+TMS-00143,TMS,Engineering,Western Railway,CORR-017,TRACK-7832,Track Geometry Defect,Low,-1,5.1,2026-06-28
+TMS-00144,TMS,Engineering,Western Railway,CORR-013,TRACK-7735,Fastening Failure,Low,-16,4.3,2026-05-30
+TMS-00145,TMS,Engineering,Western Railway,CORR-037,TRACK-7062,Rail Corrugation,Low,3,2.3,2026-06-29
+TMS-00146,TMS,Engineering,Western Railway,CORR-013,TRACK-8137,Track Geometry Defect,Low,-9,5.1,2026-07-18
+TMS-00147,TMS,Engineering,Western Railway,CORR-036,TRACK-6003,Weld Defect,Low,-17,2.3,2026-05-09
+TMS-00148,TMS,Engineering,Western Railway,CORR-013,TRACK-2918,Rail Corrugation,Low,-6,3.9,2026-05-11
+TMS-00149,TMS,Engineering,Western Railway,CORR-013,TRACK-7420,Rail Corrugation,Low,-12,2.7,2026-05-09
+TMS-00150,TMS,Engineering,Western Railway,CORR-035,TRACK-5362,Track Geometry Defect,Medium,11,5.9,2026-05-21
+TMS-00151,TMS,Engineering,Western Railway,CORR-018,TRACK-5678,Fastening Failure,Medium,-9,8.4,2026-06-07
+TMS-00152,TMS,Engineering,Western Railway,CORR-018,TRACK-4482,Weld Defect,Medium,4,5.7,2026-05-16
+TMS-00153,TMS,Engineering,Western Railway,CORR-025,TRACK-7088,Ballast Degradation,Medium,3,8.4,2026-05-06
+TMS-00154,TMS,Engineering,Western Railway,CORR-035,TRACK-7770,Fastening Failure,Medium,8,4.4,2026-06-20
+TMS-00155,TMS,Engineering,Western Railway,CORR-025,TRACK-7660,Track Geometry Defect,Medium,0,9.2,2026-07-14
+TMS-00156,TMS,Engineering,Western Railway,CORR-018,TRACK-1169,Fastening Failure,High,20,12.5,2026-05-26
+TMS-00157,TMS,Engineering,Western Railway,CORR-017,TRACK-7649,Rail Fracture,High,26,10.6,2026-05-27
+TMS-00158,TMS,Engineering,Western Railway,CORR-037,TRACK-1447,Ballast Degradation,High,18,10.0,2026-05-05
+TMS-00159,TMS,Engineering,Western Railway,CORR-013,TRACK-8109,Weld Defect,High,23,9.2,2026-07-07
+TMS-00160,TMS,Engineering,Western Railway,CORR-018,TRACK-5217,Track Geometry Defect,High,25,15.8,2026-05-05
+TMS-00161,TMS,Engineering,Western Railway,CORR-017,TRACK-1592,Weld Defect,High,27,7.3,2026-08-01
+TMS-00162,TMS,Engineering,Western Railway,CORR-017,TRACK-3239,Ballast Degradation,Critical,52,12.6,2026-05-16
+TMS-00163,TMS,Engineering,Western Railway,CORR-013,TRACK-4543,Rail Fracture,Critical,43,25.3,2026-05-11
+TMS-00164,TMS,Engineering,Western Railway,CORR-036,TRACK-3647,Fastening Failure,Critical,7,28.6,2026-05-23
+TMS-00165,TMS,Engineering,Western Railway,CORR-018,TRACK-5373,Rail Corrugation,Critical,59,28.9,2026-05-06
+TMS-00166,TMS,Engineering,Western Railway,CORR-017,TRACK-9123,Rail Fracture,Critical,8,17.4,2026-07-10
+SMMS-00001,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-5507,Point Machine Failure,Low,3,2.3,2026-07-10
+SMMS-00002,SMMS,Signal & Telecommunication,Central Railway,CORR-022,SIG-5590,Communication Link Failure,Low,8,5.1,2026-07-25
+SMMS-00003,SMMS,Signal & Telecommunication,Central Railway,CORR-022,SIG-4308,Level Crossing Fault,Low,7,3.0,2026-05-23
+SMMS-00004,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-8834,Signal Relay Fault,Low,8,4.4,2026-07-30
+SMMS-00005,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-2035,Signal Relay Fault,Low,5,4.8,2026-06-19
+SMMS-00006,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-7324,Level Crossing Fault,Low,-5,3.9,2026-05-04
+SMMS-00007,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-5524,Interlocking Fault,Low,2,5.5,2026-07-19
+SMMS-00008,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-9336,Communication Link Failure,Medium,-2,8.2,2026-05-22
+SMMS-00009,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-5956,Signal Relay Fault,Medium,8,4.3,2026-08-01
+SMMS-00010,SMMS,Signal & Telecommunication,Central Railway,CORR-022,SIG-6699,Level Crossing Fault,Medium,15,7.2,2026-06-16
+SMMS-00011,SMMS,Signal & Telecommunication,Central Railway,CORR-028,SIG-6994,Level Crossing Fault,Medium,-9,5.8,2026-06-04
+SMMS-00012,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-5810,Level Crossing Fault,Medium,0,5.7,2026-06-14
+SMMS-00013,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-1042,Track Circuit Fault,High,4,13.6,2026-05-24
+SMMS-00014,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-2966,Point Machine Failure,High,30,6.7,2026-05-15
+SMMS-00015,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-7892,Level Crossing Fault,High,14,14.7,2026-05-21
+SMMS-00016,SMMS,Signal & Telecommunication,Central Railway,CORR-029,SIG-2114,Level Crossing Fault,Critical,51,25.9,2026-06-16
+SMMS-00017,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-2611,Point Machine Failure,Low,-8,3.1,2026-08-01
+SMMS-00018,SMMS,Signal & Telecommunication,Eastern Railway,CORR-019,SIG-7909,Point Machine Failure,Low,1,2.3,2026-06-21
+SMMS-00019,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-4127,Level Crossing Fault,Low,-17,4.6,2026-06-03
+SMMS-00020,SMMS,Signal & Telecommunication,Eastern Railway,CORR-006,SIG-6854,Track Circuit Fault,Low,-10,4.6,2026-07-17
+SMMS-00021,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-1093,Communication Link Failure,Low,-6,2.4,2026-06-30
+SMMS-00022,SMMS,Signal & Telecommunication,Eastern Railway,CORR-032,SIG-3319,Signal Relay Fault,Low,-6,3.3,2026-07-16
+SMMS-00023,SMMS,Signal & Telecommunication,Eastern Railway,CORR-006,SIG-9693,Point Machine Failure,Low,9,6.0,2026-07-27
+SMMS-00024,SMMS,Signal & Telecommunication,Eastern Railway,CORR-032,SIG-2862,Level Crossing Fault,Low,3,4.7,2026-05-25
+SMMS-00025,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-9354,Communication Link Failure,Low,-19,4.9,2026-07-20
+SMMS-00026,SMMS,Signal & Telecommunication,Eastern Railway,CORR-006,SIG-3119,Interlocking Fault,Low,-10,2.9,2026-06-13
+SMMS-00027,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-3301,Communication Link Failure,Medium,-1,8.8,2026-07-16
+SMMS-00028,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-1571,Track Circuit Fault,Medium,-8,9.3,2026-07-16
+SMMS-00029,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-9543,Communication Link Failure,High,33,13.8,2026-07-19
+SMMS-00030,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-9639,Point Machine Failure,High,34,15.3,2026-06-29
+SMMS-00031,SMMS,Signal & Telecommunication,Eastern Railway,CORR-019,SIG-4525,Communication Link Failure,High,34,13.6,2026-07-08
+SMMS-00032,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-8732,Level Crossing Fault,High,23,6.5,2026-07-24
+SMMS-00033,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-4496,Level Crossing Fault,High,17,14.4,2026-06-10
+SMMS-00034,SMMS,Signal & Telecommunication,Eastern Railway,CORR-019,SIG-6225,Level Crossing Fault,High,32,15.4,2026-06-21
+SMMS-00035,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-7803,Track Circuit Fault,High,22,15.9,2026-05-28
+SMMS-00036,SMMS,Signal & Telecommunication,Eastern Railway,CORR-032,SIG-3828,Point Machine Failure,Critical,20,21.8,2026-06-16
+SMMS-00037,SMMS,Signal & Telecommunication,Eastern Railway,CORR-024,SIG-3587,Signal Relay Fault,Critical,23,15.1,2026-06-27
+SMMS-00038,SMMS,Signal & Telecommunication,Eastern Railway,CORR-032,SIG-7285,Interlocking Fault,Critical,34,15.2,2026-07-12
+SMMS-00039,SMMS,Signal & Telecommunication,Eastern Railway,CORR-015,SIG-5198,Interlocking Fault,Critical,45,19.8,2026-06-04
+SMMS-00040,SMMS,Signal & Telecommunication,Northern Railway,CORR-038,SIG-6875,Track Circuit Fault,Low,5,5.7,2026-06-29
+SMMS-00041,SMMS,Signal & Telecommunication,Northern Railway,CORR-030,SIG-6074,Interlocking Fault,Low,-13,5.2,2026-07-14
+SMMS-00042,SMMS,Signal & Telecommunication,Northern Railway,CORR-008,SIG-6667,Communication Link Failure,Low,0,2.8,2026-05-31
+SMMS-00043,SMMS,Signal & Telecommunication,Northern Railway,CORR-012,SIG-9382,Point Machine Failure,Low,-5,3.6,2026-07-20
+SMMS-00044,SMMS,Signal & Telecommunication,Northern Railway,CORR-012,SIG-3618,Communication Link Failure,Low,-5,4.4,2026-06-05
+SMMS-00045,SMMS,Signal & Telecommunication,Northern Railway,CORR-008,SIG-5338,Interlocking Fault,Low,-2,2.6,2026-06-04
+SMMS-00046,SMMS,Signal & Telecommunication,Northern Railway,CORR-012,SIG-1283,Level Crossing Fault,Low,4,2.8,2026-07-18
+SMMS-00047,SMMS,Signal & Telecommunication,Northern Railway,CORR-031,SIG-1807,Communication Link Failure,Medium,2,5.2,2026-06-09
+SMMS-00048,SMMS,Signal & Telecommunication,Northern Railway,CORR-038,SIG-7400,Interlocking Fault,Medium,-10,9.4,2026-07-16
+SMMS-00049,SMMS,Signal & Telecommunication,Northern Railway,CORR-030,SIG-2227,Signal Relay Fault,Medium,11,5.6,2026-05-20
+SMMS-00050,SMMS,Signal & Telecommunication,Northern Railway,CORR-009,SIG-8497,Level Crossing Fault,Medium,-5,5.7,2026-07-19
+SMMS-00051,SMMS,Signal & Telecommunication,Northern Railway,CORR-007,SIG-1126,Communication Link Failure,Medium,0,6.5,2026-06-01
+SMMS-00052,SMMS,Signal & Telecommunication,Northern Railway,CORR-008,SIG-5571,Signal Relay Fault,Medium,2,4.8,2026-05-14
+SMMS-00053,SMMS,Signal & Telecommunication,Northern Railway,CORR-009,SIG-9789,Point Machine Failure,Medium,10,7.0,2026-05-14
+SMMS-00054,SMMS,Signal & Telecommunication,Northern Railway,CORR-003,SIG-7059,Interlocking Fault,High,32,9.7,2026-06-04
+SMMS-00055,SMMS,Signal & Telecommunication,Northern Railway,CORR-007,SIG-2901,Communication Link Failure,High,2,8.7,2026-05-06
+SMMS-00056,SMMS,Signal & Telecommunication,Northern Railway,CORR-012,SIG-8926,Communication Link Failure,High,22,9.9,2026-05-04
+SMMS-00057,SMMS,Signal & Telecommunication,Northern Railway,CORR-038,SIG-1322,Point Machine Failure,Critical,44,28.4,2026-05-11
+SMMS-00058,SMMS,Signal & Telecommunication,Northern Railway,CORR-003,SIG-4363,Level Crossing Fault,Critical,7,10.7,2026-06-09
+SMMS-00059,SMMS,Signal & Telecommunication,South Central Railway,CORR-011,SIG-2163,Interlocking Fault,Low,-12,5.7,2026-05-14
+SMMS-00060,SMMS,Signal & Telecommunication,South Central Railway,CORR-016,SIG-2086,Track Circuit Fault,Low,-14,5.1,2026-06-03
+SMMS-00061,SMMS,Signal & Telecommunication,South Central Railway,CORR-001,SIG-4379,Communication Link Failure,Low,-19,3.0,2026-05-22
+SMMS-00062,SMMS,Signal & Telecommunication,South Central Railway,CORR-001,SIG-1010,Level Crossing Fault,Low,-2,5.8,2026-06-22
+SMMS-00063,SMMS,Signal & Telecommunication,South Central Railway,CORR-016,SIG-7261,Communication Link Failure,Low,-13,3.4,2026-06-22
+SMMS-00064,SMMS,Signal & Telecommunication,South Central Railway,CORR-023,SIG-6867,Signal Relay Fault,Low,-10,4.6,2026-06-21
+SMMS-00065,SMMS,Signal & Telecommunication,South Central Railway,CORR-034,SIG-8151,Track Circuit Fault,Low,4,5.0,2026-06-30
+SMMS-00066,SMMS,Signal & Telecommunication,South Central Railway,CORR-020,SIG-5683,Signal Relay Fault,Low,-17,2.1,2026-05-04
+SMMS-00067,SMMS,Signal & Telecommunication,South Central Railway,CORR-034,SIG-3085,Interlocking Fault,Low,-5,5.8,2026-07-21
+SMMS-00068,SMMS,Signal & Telecommunication,South Central Railway,CORR-027,SIG-9462,Point Machine Failure,Medium,-10,9.6,2026-05-31
+SMMS-00069,SMMS,Signal & Telecommunication,South Central Railway,CORR-020,SIG-9985,Point Machine Failure,Medium,-1,8.6,2026-07-07
+SMMS-00070,SMMS,Signal & Telecommunication,South Central Railway,CORR-040,SIG-5715,Level Crossing Fault,Medium,-7,7.1,2026-06-02
+SMMS-00071,SMMS,Signal & Telecommunication,South Central Railway,CORR-040,SIG-4410,Track Circuit Fault,Medium,4,5.2,2026-05-06
+SMMS-00072,SMMS,Signal & Telecommunication,South Central Railway,CORR-020,SIG-4668,Communication Link Failure,High,20,12.8,2026-05-27
+SMMS-00073,SMMS,Signal & Telecommunication,South Central Railway,CORR-020,SIG-2527,Communication Link Failure,High,7,14.4,2026-05-04
+SMMS-00074,SMMS,Signal & Telecommunication,South Central Railway,CORR-039,SIG-5189,Point Machine Failure,High,31,7.3,2026-07-25
+SMMS-00075,SMMS,Signal & Telecommunication,South Central Railway,CORR-027,SIG-7095,Point Machine Failure,High,30,12.6,2026-06-04
+SMMS-00076,SMMS,Signal & Telecommunication,South Central Railway,CORR-016,SIG-2719,Track Circuit Fault,High,33,11.8,2026-06-13
+SMMS-00077,SMMS,Signal & Telecommunication,South Central Railway,CORR-033,SIG-4304,Point Machine Failure,High,22,6.3,2026-05-16
+SMMS-00078,SMMS,Signal & Telecommunication,South Central Railway,CORR-027,SIG-8270,Communication Link Failure,High,24,8.0,2026-05-18
+SMMS-00079,SMMS,Signal & Telecommunication,South Central Railway,CORR-001,SIG-5752,Communication Link Failure,Critical,39,26.6,2026-06-25
+SMMS-00080,SMMS,Signal & Telecommunication,South Central Railway,CORR-039,SIG-9163,Point Machine Failure,Critical,22,28.2,2026-07-24
+SMMS-00081,SMMS,Signal & Telecommunication,Southern Railway,CORR-002,SIG-1409,Signal Relay Fault,Low,4,4.4,2026-06-21
+SMMS-00082,SMMS,Signal & Telecommunication,Southern Railway,CORR-014,SIG-4870,Point Machine Failure,Low,-5,5.5,2026-07-08
+SMMS-00083,SMMS,Signal & Telecommunication,Southern Railway,CORR-021,SIG-1808,Track Circuit Fault,Low,-20,2.6,2026-05-21
+SMMS-00084,SMMS,Signal & Telecommunication,Southern Railway,CORR-021,SIG-9924,Track Circuit Fault,Low,-15,2.1,2026-07-18
+SMMS-00085,SMMS,Signal & Telecommunication,Southern Railway,CORR-026,SIG-3578,Communication Link Failure,Medium,-7,6.0,2026-06-04
+SMMS-00086,SMMS,Signal & Telecommunication,Southern Railway,CORR-004,SIG-7837,Track Circuit Fault,Medium,2,7.3,2026-06-08
+SMMS-00087,SMMS,Signal & Telecommunication,Southern Railway,CORR-002,SIG-4135,Level Crossing Fault,Medium,-5,5.2,2026-06-23
+SMMS-00088,SMMS,Signal & Telecommunication,Southern Railway,CORR-014,SIG-9185,Interlocking Fault,Medium,9,4.1,2026-05-31
+SMMS-00089,SMMS,Signal & Telecommunication,Southern Railway,CORR-004,SIG-9870,Communication Link Failure,Medium,6,7.4,2026-05-06
+SMMS-00090,SMMS,Signal & Telecommunication,Southern Railway,CORR-004,SIG-1878,Signal Relay Fault,Medium,12,6.8,2026-06-11
+SMMS-00091,SMMS,Signal & Telecommunication,Southern Railway,CORR-010,SIG-8505,Signal Relay Fault,Medium,-6,7.9,2026-07-13
+SMMS-00092,SMMS,Signal & Telecommunication,Southern Railway,CORR-005,SIG-5308,Point Machine Failure,Medium,19,4.9,2026-05-10
+SMMS-00093,SMMS,Signal & Telecommunication,Southern Railway,CORR-021,SIG-9494,Signal Relay Fault,Medium,4,9.0,2026-07-09
+SMMS-00094,SMMS,Signal & Telecommunication,Southern Railway,CORR-026,SIG-7788,Track Circuit Fault,Medium,-3,4.9,2026-05-04
+SMMS-00095,SMMS,Signal & Telecommunication,Southern Railway,CORR-004,SIG-1423,Interlocking Fault,Medium,14,9.3,2026-07-04
+SMMS-00096,SMMS,Signal & Telecommunication,Southern Railway,CORR-014,SIG-7459,Interlocking Fault,Medium,-6,6.7,2026-07-16
+SMMS-00097,SMMS,Signal & Telecommunication,Southern Railway,CORR-002,SIG-8170,Point Machine Failure,High,32,6.4,2026-06-23
+SMMS-00098,SMMS,Signal & Telecommunication,Southern Railway,CORR-005,SIG-1251,Interlocking Fault,Critical,48,19.7,2026-07-20
+SMMS-00099,SMMS,Signal & Telecommunication,Western Railway,CORR-017,SIG-8988,Point Machine Failure,Low,8,2.5,2026-05-08
+SMMS-00100,SMMS,Signal & Telecommunication,Western Railway,CORR-036,SIG-7222,Level Crossing Fault,Low,-15,5.9,2026-07-09
+SMMS-00101,SMMS,Signal & Telecommunication,Western Railway,CORR-025,SIG-1057,Track Circuit Fault,Low,-19,3.0,2026-07-27
+SMMS-00102,SMMS,Signal & Telecommunication,Western Railway,CORR-025,SIG-3480,Point Machine Failure,Low,-20,3.8,2026-07-27
+SMMS-00103,SMMS,Signal & Telecommunication,Western Railway,CORR-017,SIG-2009,Communication Link Failure,Low,-10,2.9,2026-06-22
+SMMS-00104,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-8874,Level Crossing Fault,Low,-5,4.0,2026-05-14
+SMMS-00105,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-6187,Track Circuit Fault,Low,-18,5.0,2026-06-10
+SMMS-00106,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-5966,Point Machine Failure,Low,-16,4.1,2026-06-07
+SMMS-00107,SMMS,Signal & Telecommunication,Western Railway,CORR-013,SIG-8671,Track Circuit Fault,Low,-6,3.1,2026-06-06
+SMMS-00108,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-6866,Point Machine Failure,Low,-6,3.0,2026-05-21
+SMMS-00109,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-9697,Track Circuit Fault,Medium,12,5.9,2026-05-31
+SMMS-00110,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-7467,Signal Relay Fault,Medium,-7,9.0,2026-05-31
+SMMS-00111,SMMS,Signal & Telecommunication,Western Railway,CORR-018,SIG-3890,Signal Relay Fault,High,20,9.1,2026-05-04
+SMMS-00112,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-6898,Communication Link Failure,High,33,14.7,2026-05-05
+SMMS-00113,SMMS,Signal & Telecommunication,Western Railway,CORR-036,SIG-9300,Communication Link Failure,High,16,7.7,2026-06-07
+SMMS-00114,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-8415,Signal Relay Fault,High,17,9.5,2026-06-08
+SMMS-00115,SMMS,Signal & Telecommunication,Western Railway,CORR-025,SIG-5709,Interlocking Fault,High,16,13.7,2026-06-20
+SMMS-00116,SMMS,Signal & Telecommunication,Western Railway,CORR-036,SIG-1790,Signal Relay Fault,High,1,6.3,2026-07-03
+SMMS-00117,SMMS,Signal & Telecommunication,Western Railway,CORR-017,SIG-5634,Level Crossing Fault,High,0,12.7,2026-07-26
+SMMS-00118,SMMS,Signal & Telecommunication,Western Railway,CORR-025,SIG-7729,Signal Relay Fault,Critical,40,14.7,2026-06-04
+SMMS-00119,SMMS,Signal & Telecommunication,Western Railway,CORR-037,SIG-3104,Signal Relay Fault,Critical,39,28.6,2026-05-04
+TDMS-00001,TDMS,Traction Distribution,Central Railway,CORR-029,TRAC-7895,Feeder Fault,Low,-8,3.3,2026-06-28
+TDMS-00002,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-2516,Circuit Breaker Fault,Low,4,3.6,2026-05-17
+TDMS-00003,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-5077,Circuit Breaker Fault,Low,-18,5.6,2026-07-04
+TDMS-00004,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-8538,Feeder Fault,Low,2,5.0,2026-07-10
+TDMS-00005,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-8553,Earthing Fault,Low,-14,5.9,2026-06-18
+TDMS-00006,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-6199,Circuit Breaker Fault,Medium,-7,5.3,2026-06-20
+TDMS-00007,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-2561,Traction Substation Fault,Medium,19,4.2,2026-05-17
+TDMS-00008,TDMS,Traction Distribution,Central Railway,CORR-029,TRAC-8335,Insulator Damage,Medium,8,9.2,2026-05-26
+TDMS-00009,TDMS,Traction Distribution,Central Railway,CORR-029,TRAC-9968,Earthing Fault,Medium,-1,8.5,2026-05-10
+TDMS-00010,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-2536,Earthing Fault,High,19,11.2,2026-06-26
+TDMS-00011,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-8217,Circuit Breaker Fault,High,5,8.9,2026-05-06
+TDMS-00012,TDMS,Traction Distribution,Central Railway,CORR-029,TRAC-4067,Feeder Fault,High,8,9.2,2026-05-24
+TDMS-00013,TDMS,Traction Distribution,Central Railway,CORR-028,TRAC-7247,OHE Wire Wear,Critical,27,16.2,2026-05-17
+TDMS-00014,TDMS,Traction Distribution,Central Railway,CORR-022,TRAC-4562,Feeder Fault,Critical,29,13.7,2026-06-22
+TDMS-00015,TDMS,Traction Distribution,Eastern Railway,CORR-015,TRAC-3123,Earthing Fault,Low,5,2.7,2026-07-15
+TDMS-00016,TDMS,Traction Distribution,Eastern Railway,CORR-032,TRAC-2254,OHE Wire Wear,Low,-7,4.1,2026-06-02
+TDMS-00017,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-7394,Feeder Fault,Low,-9,2.0,2026-06-20
+TDMS-00018,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-6728,Feeder Fault,Low,-1,2.5,2026-05-28
+TDMS-00019,TDMS,Traction Distribution,Eastern Railway,CORR-032,TRAC-5886,Traction Substation Fault,Low,5,4.3,2026-07-28
+TDMS-00020,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-8808,Feeder Fault,Low,-5,3.2,2026-07-17
+TDMS-00021,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-9624,OHE Wire Wear,Medium,14,8.0,2026-05-12
+TDMS-00022,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-6023,Earthing Fault,Medium,-7,7.3,2026-06-20
+TDMS-00023,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-2092,Traction Substation Fault,Medium,-5,6.2,2026-07-19
+TDMS-00024,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-3292,Earthing Fault,Medium,7,4.8,2026-05-28
+TDMS-00025,TDMS,Traction Distribution,Eastern Railway,CORR-032,TRAC-4690,Traction Substation Fault,Medium,-8,8.2,2026-05-20
+TDMS-00026,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-7137,Traction Substation Fault,Medium,14,8.9,2026-06-10
+TDMS-00027,TDMS,Traction Distribution,Eastern Railway,CORR-019,TRAC-4622,Insulator Damage,Medium,11,4.8,2026-07-18
+TDMS-00028,TDMS,Traction Distribution,Eastern Railway,CORR-024,TRAC-2882,OHE Wire Wear,Medium,13,7.0,2026-07-11
+TDMS-00029,TDMS,Traction Distribution,Eastern Railway,CORR-019,TRAC-8199,OHE Wire Wear,High,26,10.7,2026-06-12
+TDMS-00030,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-1214,Insulator Damage,High,28,15.2,2026-05-11
+TDMS-00031,TDMS,Traction Distribution,Eastern Railway,CORR-019,TRAC-7399,Feeder Fault,High,14,13.9,2026-06-26
+TDMS-00032,TDMS,Traction Distribution,Eastern Railway,CORR-032,TRAC-4861,Circuit Breaker Fault,Critical,38,23.7,2026-06-29
+TDMS-00033,TDMS,Traction Distribution,Eastern Railway,CORR-006,TRAC-9651,Insulator Damage,Critical,51,27.0,2026-06-13
+TDMS-00034,TDMS,Traction Distribution,Northern Railway,CORR-038,TRAC-1922,OHE Wire Wear,Low,-14,5.7,2026-06-29
+TDMS-00035,TDMS,Traction Distribution,Northern Railway,CORR-030,TRAC-4929,Traction Substation Fault,Low,4,3.3,2026-07-04
+TDMS-00036,TDMS,Traction Distribution,Northern Railway,CORR-012,TRAC-9855,OHE Wire Wear,Low,-13,5.0,2026-05-11
+TDMS-00037,TDMS,Traction Distribution,Northern Railway,CORR-030,TRAC-1462,OHE Wire Wear,Low,-20,5.8,2026-07-06
+TDMS-00038,TDMS,Traction Distribution,Northern Railway,CORR-007,TRAC-2301,Feeder Fault,Medium,6,7.4,2026-06-26
+TDMS-00039,TDMS,Traction Distribution,Northern Railway,CORR-007,TRAC-2118,Traction Substation Fault,Medium,4,4.4,2026-06-26
+TDMS-00040,TDMS,Traction Distribution,Northern Railway,CORR-008,TRAC-8613,Circuit Breaker Fault,Medium,-6,7.6,2026-07-21
+TDMS-00041,TDMS,Traction Distribution,Northern Railway,CORR-009,TRAC-8733,Earthing Fault,High,15,15.2,2026-06-03
+TDMS-00042,TDMS,Traction Distribution,Northern Railway,CORR-009,TRAC-1250,OHE Wire Wear,High,13,8.0,2026-05-29
+TDMS-00043,TDMS,Traction Distribution,Northern Railway,CORR-030,TRAC-2048,Traction Substation Fault,High,0,14.8,2026-07-07
+TDMS-00044,TDMS,Traction Distribution,Northern Railway,CORR-008,TRAC-9311,Circuit Breaker Fault,High,31,10.0,2026-07-17
+TDMS-00045,TDMS,Traction Distribution,Northern Railway,CORR-031,TRAC-6417,Traction Substation Fault,Critical,50,24.2,2026-05-27
+TDMS-00046,TDMS,Traction Distribution,Northern Railway,CORR-008,TRAC-7404,Earthing Fault,Critical,11,27.2,2026-05-11
+TDMS-00047,TDMS,Traction Distribution,Northern Railway,CORR-008,TRAC-8082,Circuit Breaker Fault,Critical,36,28.7,2026-06-08
+TDMS-00048,TDMS,Traction Distribution,Northern Railway,CORR-012,TRAC-4426,Traction Substation Fault,Critical,29,25.7,2026-05-23
+TDMS-00049,TDMS,Traction Distribution,Northern Railway,CORR-003,TRAC-5945,OHE Wire Wear,Critical,35,23.1,2026-05-17
+TDMS-00050,TDMS,Traction Distribution,South Central Railway,CORR-033,TRAC-7149,Circuit Breaker Fault,Low,-5,2.1,2026-06-09
+TDMS-00051,TDMS,Traction Distribution,South Central Railway,CORR-016,TRAC-6038,Earthing Fault,Low,-10,5.9,2026-05-07
+TDMS-00052,TDMS,Traction Distribution,South Central Railway,CORR-034,TRAC-6106,Insulator Damage,Low,7,5.8,2026-05-12
+TDMS-00053,TDMS,Traction Distribution,South Central Railway,CORR-027,TRAC-9293,Circuit Breaker Fault,Low,-4,4.3,2026-06-17
+TDMS-00054,TDMS,Traction Distribution,South Central Railway,CORR-001,TRAC-4413,Earthing Fault,Medium,6,8.8,2026-05-18
+TDMS-00055,TDMS,Traction Distribution,South Central Railway,CORR-033,TRAC-2126,Traction Substation Fault,Medium,0,7.8,2026-07-12
+TDMS-00056,TDMS,Traction Distribution,South Central Railway,CORR-020,TRAC-3566,Traction Substation Fault,Medium,-10,7.1,2026-07-07
+TDMS-00057,TDMS,Traction Distribution,South Central Railway,CORR-001,TRAC-8787,Earthing Fault,Medium,-1,9.8,2026-07-19
+TDMS-00058,TDMS,Traction Distribution,South Central Railway,CORR-040,TRAC-4221,Earthing Fault,Medium,-2,8.2,2026-06-21
+TDMS-00059,TDMS,Traction Distribution,South Central Railway,CORR-033,TRAC-6216,Earthing Fault,Medium,9,9.7,2026-05-18
+TDMS-00060,TDMS,Traction Distribution,South Central Railway,CORR-040,TRAC-9804,Earthing Fault,High,23,15.7,2026-05-25
+TDMS-00061,TDMS,Traction Distribution,South Central Railway,CORR-023,TRAC-8128,Circuit Breaker Fault,High,18,12.7,2026-06-22
+TDMS-00062,TDMS,Traction Distribution,South Central Railway,CORR-033,TRAC-5479,Traction Substation Fault,High,8,10.2,2026-06-22
+TDMS-00063,TDMS,Traction Distribution,South Central Railway,CORR-039,TRAC-8157,Circuit Breaker Fault,High,34,7.4,2026-05-16
+TDMS-00064,TDMS,Traction Distribution,South Central Railway,CORR-027,TRAC-7455,Earthing Fault,High,3,13.2,2026-06-09
+TDMS-00065,TDMS,Traction Distribution,South Central Railway,CORR-027,TRAC-9836,Insulator Damage,Critical,56,14.8,2026-05-07
+TDMS-00066,TDMS,Traction Distribution,South Central Railway,CORR-040,TRAC-2410,OHE Wire Wear,Critical,44,22.1,2026-05-19
+TDMS-00067,TDMS,Traction Distribution,South Central Railway,CORR-023,TRAC-8855,Traction Substation Fault,Critical,38,22.9,2026-06-24
+TDMS-00068,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-7833,Feeder Fault,Low,-15,5.7,2026-07-27
+TDMS-00069,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-2299,Feeder Fault,Low,-18,4.9,2026-06-22
+TDMS-00070,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-2738,Circuit Breaker Fault,Low,-4,5.9,2026-06-05
+TDMS-00071,TDMS,Traction Distribution,Southern Railway,CORR-010,TRAC-4335,Circuit Breaker Fault,Low,-8,2.2,2026-07-26
+TDMS-00072,TDMS,Traction Distribution,Southern Railway,CORR-005,TRAC-7864,Traction Substation Fault,Low,-15,2.1,2026-07-18
+TDMS-00073,TDMS,Traction Distribution,Southern Railway,CORR-010,TRAC-2669,Insulator Damage,Low,7,5.6,2026-06-06
+TDMS-00074,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-9221,Earthing Fault,Low,-13,5.6,2026-07-01
+TDMS-00075,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-4071,OHE Wire Wear,Medium,-3,9.9,2026-06-09
+TDMS-00076,TDMS,Traction Distribution,Southern Railway,CORR-021,TRAC-2195,Feeder Fault,Medium,-2,10.0,2026-06-16
+TDMS-00077,TDMS,Traction Distribution,Southern Railway,CORR-021,TRAC-3454,Insulator Damage,Medium,-1,9.2,2026-06-02
+TDMS-00078,TDMS,Traction Distribution,Southern Railway,CORR-010,TRAC-5683,Traction Substation Fault,Medium,0,8.6,2026-06-20
+TDMS-00079,TDMS,Traction Distribution,Southern Railway,CORR-014,TRAC-9359,Circuit Breaker Fault,High,5,8.3,2026-05-26
+TDMS-00080,TDMS,Traction Distribution,Southern Railway,CORR-010,TRAC-6731,Insulator Damage,High,19,8.6,2026-05-30
+TDMS-00081,TDMS,Traction Distribution,Southern Railway,CORR-002,TRAC-6686,Circuit Breaker Fault,High,26,6.8,2026-05-08
+TDMS-00082,TDMS,Traction Distribution,Southern Railway,CORR-002,TRAC-1319,Feeder Fault,Critical,56,29.4,2026-05-05
+TDMS-00083,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-8605,Feeder Fault,Low,-4,2.3,2026-05-27
+TDMS-00084,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-7304,Traction Substation Fault,Low,-14,4.3,2026-07-31
+TDMS-00085,TDMS,Traction Distribution,Western Railway,CORR-025,TRAC-7055,Insulator Damage,Low,-9,2.6,2026-07-13
+TDMS-00086,TDMS,Traction Distribution,Western Railway,CORR-035,TRAC-8891,Earthing Fault,Low,-5,2.1,2026-05-22
+TDMS-00087,TDMS,Traction Distribution,Western Railway,CORR-017,TRAC-2030,Insulator Damage,Low,-6,2.5,2026-05-11
+TDMS-00088,TDMS,Traction Distribution,Western Railway,CORR-017,TRAC-1298,Traction Substation Fault,Low,0,5.1,2026-07-04
+TDMS-00089,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-7588,OHE Wire Wear,High,4,6.7,2026-06-13
+TDMS-00090,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-5104,Earthing Fault,High,27,6.1,2026-05-11
+TDMS-00091,TDMS,Traction Distribution,Western Railway,CORR-025,TRAC-6214,Insulator Damage,High,25,7.5,2026-07-06
+TDMS-00092,TDMS,Traction Distribution,Western Railway,CORR-035,TRAC-2032,Insulator Damage,High,4,10.2,2026-05-08
+TDMS-00093,TDMS,Traction Distribution,Western Railway,CORR-018,TRAC-1304,Traction Substation Fault,High,14,14.0,2026-06-03
+TDMS-00094,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-9289,Feeder Fault,High,8,8.8,2026-05-25
+TDMS-00095,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-9692,Earthing Fault,High,31,12.3,2026-05-29
+TDMS-00096,TDMS,Traction Distribution,Western Railway,CORR-018,TRAC-2832,Feeder Fault,High,25,10.1,2026-06-09
+TDMS-00097,TDMS,Traction Distribution,Western Railway,CORR-018,TRAC-5082,Earthing Fault,Critical,40,26.9,2026-06-12
+TDMS-00098,TDMS,Traction Distribution,Western Railway,CORR-017,TRAC-8608,Traction Substation Fault,Critical,11,18.0,2026-07-15
+TDMS-00099,TDMS,Traction Distribution,Western Railway,CORR-037,TRAC-1183,Feeder Fault,Critical,33,26.1,2026-07-16
