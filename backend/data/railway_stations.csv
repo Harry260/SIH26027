@@ -1,0 +1,81 @@
+code,name,division,state,zone,lat,lng,isHub
+NDLS,New Delhi,Delhi,Delhi,NR,28.6143,77.2189,true
+DLI,Old Delhi Junction,Delhi,Delhi,NR,28.6616,77.2285,true
+NZM,Hazrat Nizamuddin,Delhi,Delhi,NR,28.5886,77.2534,true
+ANVT,Anand Vihar Terminal,Delhi,Delhi,NR,28.6475,77.3158,false
+ASR,Amritsar Junction,Firozpur,Punjab,NR,31.6340,74.8723,true
+LDH,Ludhiana Junction,Firozpur,Punjab,NR,30.9010,75.8573,false
+UMB,Ambala Cantt Junction,Ambala,Haryana,NR,30.3340,76.8406,true
+LKO,Lucknow Charbagh,Lucknow NR,Uttar Pradesh,NR,26.8322,80.9202,true
+BSB,Varanasi Junction,Lucknow NR,Uttar Pradesh,NR,25.3283,82.9868,true
+JAT,Jammu Tawi,Firozpur,Jammu & Kashmir,NR,32.7050,74.8797,true
+SVDK,SMVD Katra,Firozpur,Jammu & Kashmir,NR,32.9902,74.9312,false
+CDG,Chandigarh Junction,Ambala,Chandigarh,NR,30.7046,76.8248,true
+# North Central Railway (NCR)
+AGC,Agra Cantt,Agra,Uttar Pradesh,NCR,27.1591,77.9944,true
+CNB,Kanpur Central,Prayagraj,Uttar Pradesh,NCR,26.4539,80.3514,true
+PRYJ,Prayagraj Junction,Prayagraj,Uttar Pradesh,NCR,25.4497,81.8288,true
+JHS,VGL Jhansi Junction,Jhansi,Uttar Pradesh,NCR,25.4484,78.5685,true
+GWL,Gwalior Junction,Jhansi,Madhya Pradesh,NCR,26.2166,78.1887,false
+MTJ,Mathura Junction,Agra,Uttar Pradesh,NCR,27.4924,77.6737,false
+# Eastern Railway (ER) & South Eastern Railway (SER)
+HWH,Howrah Junction,Howrah,West Bengal,ER,22.5839,88.3426,true
+SDAH,Sealdah,Sealdah,West Bengal,ER,22.5697,88.3712,true
+ASN,Asansol Junction,Asansol,West Bengal,ER,23.6889,86.9661,false
+KGP,Kharagpur Junction,Kharagpur,West Bengal,SER,22.3392,87.3256,true
+TATA,Tatanagar Junction,Chakradharpur,Jharkhand,SER,22.7667,86.2029,true
+RNC,Ranchi Junction,Ranchi,Jharkhand,SER,23.3441,85.3240,true
+# East Central Railway (ECR)
+PNBE,Patna Junction,Danapur,Bihar,ECR,25.6022,85.1376,true
+DDU,Pt. Deen Dayal Upadhyaya Junction,Pt. Deen Dayal Upadhyaya,Uttar Pradesh,ECR,25.2818,83.1189,true
+GAYA,Gaya Junction,Pt. Deen Dayal Upadhyaya,Bihar,ECR,24.8052,85.0064,false
+DHN,Dhanbad Junction,Dhanbad,Jharkhand,ECR,23.7957,86.4304,true
+MFP,Muzaffarpur Junction,Sonpur,Bihar,ECR,26.1209,85.3906,false
+# Western Railway (WR)
+MMCT,Mumbai Central,Mumbai WR,Maharashtra,WR,18.9696,72.8193,true
+BDTS,Bandra Terminus,Mumbai WR,Maharashtra,WR,19.0620,72.8407,false
+ST,Surat,Mumbai WR,Gujarat,WR,21.2052,72.8408,true
+BRC,Vadodara Junction,Vadodara,Gujarat,WR,22.3107,73.1812,true
+ADI,Ahmedabad Junction,Ahmedabad,Gujarat,WR,23.0225,72.5714,true
+RTM,Ratlam Junction,Ratlam,Madhya Pradesh,WR,23.3364,75.0373,true
+RJT,Rajkot Junction,Rajkot,Gujarat,WR,22.3082,70.8022,false
+# Central Railway (CR)
+CSMT,Mumbai CSMT,Mumbai CR,Maharashtra,CR,18.9401,72.8353,true
+PUNE,Pune Junction,Pune,Maharashtra,CR,18.5284,73.8744,true
+NGP,Nagpur Junction,Nagpur CR,Maharashtra,CR,21.1524,79.0888,true
+BSL,Bhusaval Junction,Bhusawal,Maharashtra,CR,21.0455,75.7885,true
+SUR,Solapur Junction,Solapur,Maharashtra,CR,17.6599,75.9064,false
+# West Central Railway (WCR)
+BPL,Bhopal Junction,Bhopal,Madhya Pradesh,WCR,23.2685,77.4126,true
+RKMP,Rani Kamlapati,Bhopal,Madhya Pradesh,WCR,23.2081,77.4377,false
+JBP,Jabalpur Junction,Jabalpur,Madhya Pradesh,WCR,23.1600,79.9577,true
+KOTA,Kota Junction,Kota,Rajasthan,WCR,25.2138,75.8648,true
+ET,Itarsi Junction,Bhopal,Madhya Pradesh,WCR,22.6122,77.7634,true
+# Southern Railway (SR) & South Western Railway (SWR)
+MAS,Chennai Central,Chennai,Tamil Nadu,SR,13.0827,80.2707,true
+MS,Chennai Egmore,Chennai,Tamil Nadu,SR,13.0797,80.2612,false
+CBE,Coimbatore Junction,Salem,Tamil Nadu,SR,11.0006,76.9672,true
+MDU,Madurai Junction,Madurai,Tamil Nadu,SR,9.9178,78.1130,false
+TVC,Thiruvananthapuram Central,Thiruvananthapuram,Kerala,SR,8.4875,76.9525,true
+ERS,Ernakulam Junction,Thiruvananthapuram,Kerala,SR,9.9676,76.2917,true
+SBC,Bengaluru KSR,Bengaluru,Karnataka,SWR,12.9784,77.5684,true
+YPR,Yesvantpur Junction,Bengaluru,Karnataka,SWR,13.0238,77.5503,false
+UBL,SSS Hubballi Junction,Hubballi,Karnataka,SWR,15.3503,75.1480,true
+MYS,Mysuru Junction,Mysuru,Karnataka,SWR,12.3164,76.6496,false
+# South Central Railway (SCR) & East Coast Railway (ECoR)
+SC,Secunderabad Junction,Secunderabad,Telangana,SCR,17.4334,78.5016,true
+HYB,Hyderabad Deccan,Hyderabad,Telangana,SCR,17.3924,78.4697,true
+BZA,Vijayawada Junction,Vijayawada,Andhra Pradesh,SCR,16.5186,80.6200,true
+VSKP,Visakhapatnam Junction,Waltair,Andhra Pradesh,ECoR,17.7208,83.2844,true
+BBS,Bhubaneswar,Khurda Road,Odisha,ECoR,20.2648,85.8436,true
+PURI,Puri,Khurda Road,Odisha,ECoR,19.8080,85.8315,false
+# North Western Railway (NWR) & North Eastern Railway (NER)
+JP,Jaipur Junction,Jaipur,Rajasthan,NWR,26.9196,75.7878,true
+JU,Jodhpur Junction,Jodhpur,Rajasthan,NWR,26.2847,73.0189,true
+AII,Ajmer Junction,Ajmer,Rajasthan,NWR,26.4526,74.6399,false
+GKP,Gorakhpur Junction,Lucknow NER,Uttar Pradesh,NER,26.7606,83.3732,true
+R,Raipur Junction,Raipur,Chhattisgarh,SECR,21.2570,81.6296,true
+BSP,Bilaspur Junction,Bilaspur,Chhattisgarh,SECR,22.0805,82.1642,true
+GHY,Guwahati,Lumding,Assam,NFR,26.1827,91.7513,true
+NJP,New Jalpaiguri Junction,Katihar,West Bengal,NFR,26.6854,88.4429,true
+MAO,Madgaon Junction,Karwar,Goa,KR,15.2736,73.9781,true
