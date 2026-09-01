@@ -45,7 +45,7 @@ def generate_system_requests(system_name, department, defect_types, asset_prefix
     rows = []
     req_id = id_start
     max_possible = int(base_n_per_region * 1.3 * len(regions)) + 20 #Max_possible for assed_id
-    unique_asset_numbers = np.random.choice(np.arange(1000, 9999), size=max_possible, replace=False)#Unique value for asset ids
+    unique_asset_numbers = np.random.choice(np.arange(100000, 999999), size=max_possible, replace=False)#Unique value for asset ids
     asset_pool_idx = 0
     for region in regions: #You can call a global variable but not update it without using 'global'
         n = n_requests_for_region(region, base_n_per_region) #Number returned after mixing base_n_for_region and risk_weight
@@ -87,7 +87,7 @@ tms = generate_system_requests(
     system_name='TMS', department='Engineering',
     defect_types=['Rail Fracture', 'Ballast Degradation', 'Track Geometry Defect',
                   'Rail Corrugation', 'Fastening Failure', 'Weld Defect'],
-    asset_prefix='TRACK', base_n_per_region=25, id_start=1
+    asset_prefix='TRACK', base_n_per_region=650, id_start=1
 )
 
 #Generates smms data
@@ -95,14 +95,14 @@ smms = generate_system_requests(
     system_name='SMMS', department='Signal & Telecommunication',
     defect_types=['Signal Relay Fault', 'Point Machine Failure', 'Track Circuit Fault',
                   'Interlocking Fault', 'Communication Link Failure', 'Level Crossing Fault'],
-    asset_prefix='SIG', base_n_per_region=18, id_start=1
+    asset_prefix='SIG', base_n_per_region=500, id_start=1
 )
 #Generates tdms data
 tdms = generate_system_requests(
     system_name='TDMS', department='Traction Distribution',
     defect_types=['OHE Wire Wear', 'Insulator Damage', 'Feeder Fault',
                   'Traction Substation Fault', 'Circuit Breaker Fault', 'Earthing Fault'],
-    asset_prefix='TRAC', base_n_per_region=15, id_start=1
+    asset_prefix='TRAC', base_n_per_region=450, id_start=1
 )
 
 
@@ -115,10 +115,11 @@ combined = pd.concat([tms, smms, tdms], ignore_index=True)
 
 sev_score_map = {'Low': 1, 'Medium': 2, 'High': 3, 'Critical': 4} # Dictionary containing number as key and severity  as value
 severity_score = combined['severity'].map(sev_score_map) #replacing the severity with integer values for calculation
-urgency_score = np.clip(combined['overdue_days'], 0, None) / 10.0 #urgency_score
+urgency_score = combined['overdue_days'] * 0.25 #urgency_score
+duration_score = combined['estimated_duration_hours'] * 0.20 #duration score
 sampled_risk = np.random.choice(v2['risk_score'].dropna(), size=len(combined), replace=True) #.dropna() is used to ignore empty nan values , here random risk_score is taken with certain duplicates maybe there
-noise = (sampled_risk - sampled_risk.mean()) / sampled_risk.std() * 3 #noise
-combined['priority_score'] = (severity_score * 10) + urgency_score + noise 
+noise = (sampled_risk - sampled_risk.mean()) / sampled_risk.std() * 0.25 #noise
+combined['priority_score'] = (severity_score * 10) + urgency_score + noise + duration_score
 combined['priority_score'] = combined['priority_score'].round(2) #new column priority_score
 tms.to_csv('tms_track_defects.csv', index=False)
 smms.to_csv('smms_signal_defects.csv', index=False)
