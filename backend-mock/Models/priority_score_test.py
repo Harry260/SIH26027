@@ -8,5 +8,5 @@ total_data=dataframe.drop(columns=Dropped_columns)
 model=joblib.load('priority_score_predictor.pkl')
 cv=cross_validate(model,total_data,target)
 scores=cv['test_score']
-print("Accuracy: ",scores.mean(),'+-',scores.std())
+print("Accuracy: ",scores.mean()*100,'+-',scores.std()*100)
 print("Reference: ",cv)
