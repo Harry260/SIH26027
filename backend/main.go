@@ -26,8 +26,8 @@ type Train struct {
 }
 
 type Station struct {
-	Name     string
-	Platform int
+	Name          string
+	PlatformCount int
 }
 
 type Timetable struct {
@@ -35,45 +35,43 @@ type Timetable struct {
 	Stations []Station
 }
 
+// variable types for the LP
 const (
-	// Arrival time: {trains, station, 0}
-	varA int = iota
-	// Departure time: {train, station, 0}
-	varD
-	// Platform: {train, station, platform}
-	varP
-	// Order: {train1, train2, track}
-	varO
+	Entry int = iota
+	Exit
+	PlatformUse
+	Order
 )
 
-type Variable struct {
-	// not all of these fields are used all the time
-	name     int
-	train    int
-	station  int
-	platform int
-}
-
-const BigM = 1 << 63
+const BigM = 24 * 60 * 100
 
 func Plan(input Timetable) Timetable {
 	// variable -> column id
-	variables := make(map[Variable]int)
+	variables := make(map[[4]int]int)
+	resources := make(map[[2]int]int)
 
+	// entry, exit, platform
 	for train_id, train := range input.Trains {
 		for _, station_id := range train.Stations {
-			variables[Variable{varA, train_id, station_id, 0}] = len(variables)
-			variables[Variable{varD, train_id, station_id, 0}] = len(variables)
-			platform_count := input.Stations[station_id].Platform
+			variables[[4]int{Entry, train_id, station_id, 0}] = len(variables)
+			variables[[4]int{Exit, train_id, station_id, 0}] = len(variables)
+			platform_count := input.Stations[station_id].PlatformCount
 			for i := 0; i < platform_count; i++ {
-				variables[Variable{varP, train_id, station_id, i}] = len(variables)
+				variables[[4]int{PlatformUse, train_id, station_id, i}] = len(variables)
 			}
 		}
 	}
 
+	// order
 	for train1_id, _ := range input.Trains {
 		for train2_id, _ := range input.Trains {
-			variables[Variable{varO, train1_id, train2_id, 0}] = len(variables)
+			for station_id, station := range input.Stations {
+				for i := 0; i < station.PlatformCount; i++ {
+					next_resource := len(resources)
+					resources[[2]int{station_id, i}] = next_resource
+					variables[[4]int{Order, train1_id, train2_id, next_resource}] = len(variables)
+				}
+			}
 		}
 	}
 
@@ -82,7 +80,7 @@ func Plan(input Timetable) Timetable {
 
 	// make the platform and order variables into binary variables
 	for variable, index := range variables {
-		if variable.name == varP || variable.name == varO {
+		if variable[0] == PlatformUse || variable[0] == Order {
 			lp.SetBinary(index, true)
 		}
 	}
@@ -93,23 +91,23 @@ func Plan(input Timetable) Timetable {
 	for variable, index := range variables {
 		var name string
 
-		switch variable.name{
-		case varA:
-			train_name := input.Trains[variable.train].Name
-			station_name := input.Stations[variable.station].Name
+		switch variable[0] {
+		case Entry:
+			train_name := input.Trains[variable[1]].Name
+			station_name := input.Stations[variable[2]].Name
 			name = strings.Join([]string{"a", train_name, station_name}, "_")
-		case varD:
-			train_name := input.Trains[variable.train].Name
-			station_name := input.Stations[variable.station].Name
+		case Exit:
+			train_name := input.Trains[variable[1]].Name
+			station_name := input.Stations[variable[2]].Name
 			name = strings.Join([]string{"d", train_name, station_name}, "_")
-		case varP:
-			train_name := input.Trains[variable.train].Name
-			station_name := input.Stations[variable.station].Name
-			platform_number := strconv.FormatInt(int64(variable.platform), 10)
+		case PlatformUse:
+			train_name := input.Trains[variable[1]].Name
+			station_name := input.Stations[variable[2]].Name
+			platform_number := strconv.FormatInt(int64(variable[3]), 10)
 			name = strings.Join([]string{"p", train_name, station_name, platform_number}, "_")
-		case varO:
-			train1_name := input.Trains[variable.train].Name
-			train2_name := input.Trains[variable.train].Name
+		case Order:
+			train1_name := input.Trains[variable[1]].Name
+			train2_name := input.Trains[variable[2]].Name
 			name = strings.Join([]string{"o", train1_name, train2_name}, "_")
 		}
 
@@ -118,8 +116,8 @@ func Plan(input Timetable) Timetable {
 
 	for train_id, train := range input.Trains {
 		for i, station_id := range train.Stations {
-			arrive_variable := variables[Variable{varA, train_id, station_id, 0}]
-			depart_variable := variables[Variable{varD, train_id, station_id, 0}]
+			arrive_variable := variables[[4]int{Entry, train_id, station_id, 0}]
+			depart_variable := variables[[4]int{Exit, train_id, station_id, 0}]
 
 			// ---------------------------------------------------------------------
 			// Constraint 1: All our variables are positive
@@ -132,7 +130,7 @@ func Plan(input Timetable) Timetable {
 			}, golp.GE, 0)
 
 			// ---------------------------------------------------------------------
-			// Constraint 2: Don't arrive earlier than advertised
+			// Constraint 2: Don't arrive earlier than physically possible
 			// ---------------------------------------------------------------------
 			lp.AddConstraintSparse([]golp.Entry{
 				{arrive_variable, 1},
@@ -159,14 +157,81 @@ func Plan(input Timetable) Timetable {
 			current_station := train.Stations[i]
 			next_station := train.Stations[i+1]
 
-			depart_variable := variables[Variable{varD, train_id, current_station, 0}]
-			arrive_variable := variables[Variable{varA, train_id, next_station, 0}]
+			depart_variable := variables[[4]int{Exit, train_id, current_station}]
+			arrive_variable := variables[[4]int{Entry, train_id, next_station}]
 			travel_time := train.Travel[i]
 
 			lp.AddConstraintSparse([]golp.Entry{
 				{depart_variable, -1},
 				{arrive_variable, 1},
 			}, golp.GE, float64(travel_time))
+		}
+	}
+	// ---------------------------------------------------------------------
+	// Constraint 5: Each train enters exactly one platform of each station
+	// along its path
+	// ---------------------------------------------------------------------
+	for train_id, train := range input.Trains {
+		for _, station_id := range train.Stations {
+			station := input.Stations[station_id]
+			var constraint []golp.Entry
+
+			for i := 0; i < station.PlatformCount; i++ {
+				platform_variable := variables[[4]int{PlatformUse, train_id, station_id, i}]
+				constraint = append(constraint, golp.Entry{platform_variable, 1})
+			}
+			lp.AddConstraintSparse(constraint, golp.EQ, 1)
+
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// Constraint 6: VarO represents the order in which trains use a resource
+	// (which could be a station, a track, a junction, etc.)
+	// Furthermore, only one train may use it at a time
+	// ---------------------------------------------------------------------
+	for train1_id, _ := range input.Trains {
+		for train2_id, _ := range input.Trains {
+			if train1_id == train2_id {
+				continue
+			}
+			for resource_info, resource := range resources {
+				station_id := resource_info[0]
+				platform := resource_info[1]
+
+				order_variable := variables[[4]int{Order, train1_id, train2_id, resource}]
+				arrive1 := variables[[4]int{Entry, train1_id, station_id, 0}]
+				arrive2 := variables[[4]int{Entry, train2_id, station_id, 0}]
+				depart1 := variables[[4]int{Exit, train1_id, station_id, 0}]
+				depart2 := variables[[4]int{Exit, train2_id, station_id, 0}]
+
+				train1_platform := variables[[4]int{PlatformUse, train1_id, station_id, platform}]
+				train2_platform := variables[[4]int{PlatformUse, train2_id, station_id, platform}]
+
+				// explanation of M(2 - P1 - P2)
+				// If the trains use different stations, then we don't need to worry about conflicts,
+				// so this will effectively disable this constraint
+
+				// exit1 ≤ entry2 + M(1 - O) + M(2 - P1 - P2)
+				// exit1 - entry2 + O M + P1 M + P2 M ≤ 3 M
+				lp.AddConstraintSparse([]golp.Entry{
+					{depart1, 1},
+					{arrive2, -1},
+					{order_variable, BigM},
+					{train1_platform, BigM},
+					{train2_platform, BigM},
+				}, golp.LE, 3*BigM)
+
+				// exit2 ≤ entry1 + M O + M (2 - P1 P2)
+				// exit2 - entry1 - M O + M P1 + M P 2 + ≤ 2 M
+				lp.AddConstraintSparse([]golp.Entry{
+					{depart2, 1},
+					{arrive1, -1},
+					{order_variable, -BigM},
+					{train1_platform, BigM},
+					{train2_platform, BigM},
+				}, golp.LE, 2*BigM)
+			}
 		}
 	}
 
@@ -190,19 +255,19 @@ func Plan(input Timetable) Timetable {
 	// Eliminating all the constants(since they do not influence optimization),
 	// We obtain that this is equivalent to minimizing arrival time at each station
 	// -------------------------------------------------------------------
+	// TODO: Calculate delay and stretch properly instead and minimize that.
 
 	objective := make([]float64, lp.NumCols())
 
 	for train_id, train := range input.Trains {
 		for _, station_id := range train.Stations {
-			arrive_variable := variables[Variable{varA, train_id, station_id, 0}]
+			arrive_variable := variables[[4]int{Entry, train_id, station_id}]
 			objective[arrive_variable] = 1
 		}
 	}
 	lp.SetObjFn(objective)
 	lp.SetVerboseLevel(6)
 
-	lp.WriteToStdout()
 	lp.Solve()
 
 	return input
@@ -287,24 +352,24 @@ func main() {
 	table := Timetable{
 		Stations: []Station{
 			{
-				Name:     "Northfield",
-				Platform: 2,
+				Name:          "Northfield",
+				PlatformCount: 2,
 			},
 			{
-				Name:     "Riverside",
-				Platform: 3,
+				Name:          "Riverside",
+				PlatformCount: 3,
 			},
 			{
-				Name:     "Central",
-				Platform: 2,
+				Name:          "Central",
+				PlatformCount: 2,
 			},
 			{
-				Name:     "Oak Junction",
-				Platform: 4,
+				Name:          "Oak Junction",
+				PlatformCount: 4,
 			},
 			{
-				Name:     "Southport",
-				Platform: 1,
+				Name:          "Southport",
+				PlatformCount: 1,
 			},
 		},
 
@@ -312,9 +377,9 @@ func main() {
 			{
 				Name:      "N1",
 				Stations:  []int{0, 1, 2, 3, 4},
-				Arrival:   []Time{480, 493, 509, 524, 540},
+				Arrival:   []Time{480, 493, 516, 524, 540},
 				MinDwell:  []Time{1, 1, 2, 1, 0},
-				Departure: []Time{480, 494, 511, 525, 540},
+				Departure: []Time{480, 494, 520, 525, 540},
 				Travel:    []int{13, 15, 13, 15},
 			},
 			{
