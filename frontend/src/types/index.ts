@@ -1,54 +1,133 @@
-export type IssueType = 
-  | "obstruction" 
-  | "signal_fault" 
-  | "speed_restriction" 
-  | "maintenance" 
+// ==========================================
+// SIH26027 Frontend Types (JSON-RPC Schema)
+// ==========================================
+
+export interface ApiResponse<T = any> {
+  status: "ok" | "error";
+  data: T;
+}
+
+// Integer IDs
+export type TrainId = number;
+export type TripId = number;
+export type ResourceId = number;
+export type IssueId = number;
+export type StationId = number;
+export type CorridorId = number;
+
+// Relative time in minutes from midnight (0..1440) or duration
+export type Time = number;
+
+// ------------------------------------------
+// Train & Trip Entities
+// ------------------------------------------
+export interface Train {
+  id: TrainId;
+  name: string;
+  max_speed_kmh?: number;
+  priority_tier?: "Premier" | "Express" | "Freight";
+}
+
+export interface TripStationStop {
+  station_id: StationId;
+  station_code: string;
+  arrival: Time;     // Relative Time in minutes
+  departure: Time;   // Relative Time in minutes
+  min_dwell: Time;
+}
+
+export interface ResourceAllocation {
+  resource_id: ResourceId;
+  entry_time: Time;
+  exit_time: Time;
+  planned_speed_kmh: number;
+  headway_seconds: number;
+}
+
+export interface Trip {
+  id: TripId;
+  train: TrainId;
+  train_name?: string;
+  start_time: string; // ISO8601 absolute timestamp
+  stations: TripStationStop[];
+  resource_allocations?: ResourceAllocation[];
+}
+
+// ------------------------------------------
+// Resource Entities (Tracks, Blocks, Platforms, Junctions)
+// ------------------------------------------
+export type ResourceKind = "track" | "platform" | "junction" | "block_section";
+
+export interface Resource {
+  id: ResourceId;
+  kind: ResourceKind;
+  lane_count: number;
+}
+
+export interface ResourceInfo {
+  resource: Resource;
+  name: string;
+  sequence: number;
+  location: [number, number];       // [lng, lat]
+  coordinates: [number, number][];   // GeoJSON LineString coordinates [[lng, lat], ...]
+  length_m: number;
+  max_speed_kmh: number;
+  gradient?: string;
+  occupancy: "free" | "occupied" | "reserved";
+  active_train?: TrainId;
+  train_name?: string;
+  issues: BlockIssue[];
+}
+
+// ------------------------------------------
+// Issue & Telemetry Entities
+// ------------------------------------------
+export type IssueType =
+  | "obstruction"
+  | "signal_fault"
+  | "speed_restriction"
+  | "maintenance"
   | "other";
 
 export type IssueSeverity = "low" | "medium" | "high";
 
 export interface BlockIssue {
-  issue_id: string;
+  issue_id: IssueId;
   issue_type: IssueType;
   description: string;
   severity: IssueSeverity;
   reported_by: string;
-  timestamp: string; // ISO
+  timestamp: string; // ISO8601
 }
 
-export type DerivedStatus = "free" | "occupied" | "reserved" | "degraded" | "fault";
-
-export type BaseOccupancy = "free" | "occupied" | "reserved";
-
-export interface BlockProperties {
-  block_id: string;
-  sequence: number;
-  start_signal: string;
-  end_signal: string;
-  occupancy: BaseOccupancy; // base occupancy state, independent of issues
-  issues: BlockIssue[]; // zero or more simultaneous issues on this block
-  train_id?: string;
-  train_name?: string;
-  length_m: number;
-  max_speed_kmh?: number;
-  gradient?: string;
+export interface SubmitIssueBody {
+  issue_type: IssueType;
+  description: string;
+  severity?: IssueSeverity; // Optional: predicted automatically by backend if omitted
+  reported_by?: string;
+  timestamp?: string;
 }
 
-export interface BlockFeature {
-  type: "Feature";
-  geometry: {
-    type: "LineString";
-    coordinates: [number, number][]; // [lng, lat] per GeoJSON standard
-  };
-  properties: BlockProperties;
+// ------------------------------------------
+// Repairs & Resource Blocks
+// ------------------------------------------
+export interface RepairRequest {
+  resource_id: ResourceId;
+  time_start: Time;
+  time_end: Time;
 }
 
-export interface BlockFeatureCollection {
-  type: "FeatureCollection";
-  features: BlockFeature[];
+export interface ResourceBlock {
+  resource_id: ResourceId;
+  start: Time;
+  end: Time;
 }
 
+// ------------------------------------------
+// Station & Corridor Metadata
+// ------------------------------------------
 export interface Station {
+  id: StationId;
   code: string;
   name: string;
   division?: string;
@@ -60,6 +139,8 @@ export interface Station {
 }
 
 export interface RouteCorridor {
+  id: CorridorId;
+  code: string;
   fromCode: string;
   toCode: string;
   name: string;
@@ -69,33 +150,5 @@ export interface RouteCorridor {
   description: string;
 }
 
-export interface AiPlanBlock {
-  block_id: string;
-  train_id: string;
-  train_name?: string;
-  entry_time: string;
-  exit_time: string;
-  planned_speed_kmh?: number;
-  headway_seconds?: number;
-  priority_tier?: "Premier" | "Express" | "Freight";
-}
-
-export interface AssetBlock {
-  block_id: string;
-  idle_minutes: number;
-  asset_id: string;
-  asset_type?: "Electric Loco (WAP-7)" | "Diesel Loco (WDM-3D)" | "EMU / Vande Bharat" | "Freight Rake";
-  asset_status?: "Holding at Signal" | "Optimal Transit" | "Speed Restricted" | "Yard Staging";
-}
-
-export type AppMode = "report" | "ai-plan" | "asset";
-
-export interface SubmitIssuePayload {
-  block_id: string;
-  issue_type: string;
-  description: string;
-  severity: IssueSeverity;
-  reported_by: string;
-  timestamp: string;
-}
-
+export type DerivedStatus = "free" | "occupied" | "reserved" | "degraded" | "fault";
+export type AppMode = "report" | "ai-plan";

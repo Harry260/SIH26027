@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertCircle, Sparkles, Gauge } from 'lucide-react';
+import { AlertCircle, Sparkles } from 'lucide-react';
 import { AppMode } from '../../types';
 import { useRailwayStore } from '../../store/useRailwayStore';
 
@@ -11,7 +11,6 @@ export const ModeSwitcher: React.FC = () => {
   const modes: { id: AppMode; label: string; icon: React.FC<{ className?: string }> }[] = [
     { id: 'report', label: 'Report Mode', icon: AlertCircle },
     { id: 'ai-plan', label: 'AI Plan Mode', icon: Sparkles },
-    { id: 'asset', label: 'Asset View', icon: Gauge },
   ];
 
   return (
@@ -29,7 +28,7 @@ export const ModeSwitcher: React.FC = () => {
               isActive
                 ? 'bg-primary text-white shadow-md'
                 : 'text-ink dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
-            } active:scale-95 disabled:pointer-events-none`}
+            } active:scale-95 disabled:pointer-events-none cursor-pointer`}
           >
             {isLoadingMode && isActive ? (
               <svg className="animate-spin h-3.5 w-3.5 text-white" viewBox="0 0 24 24" fill="none">

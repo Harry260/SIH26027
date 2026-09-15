@@ -1,26 +1,27 @@
 import {
   Station,
   RouteCorridor,
-  BlockFeatureCollection,
-  AiPlanBlock,
-  AssetBlock,
-  SubmitIssuePayload,
+  ResourceInfo,
+  Train,
+  Trip,
+  SubmitIssueBody,
+  IssueId,
+  ResourceId,
+  ResourceBlock,
 } from '../types';
 import { MOCK_STATIONS, SUPPORTED_CORRIDORS } from '../mockData/stations';
 import { getBlockSectionsForRoute } from '../mockData/blockSections';
-import { generateMockAiPlan } from '../mockData/aiPlanData';
-import { generateMockAssetData } from '../mockData/assetData';
+import { generateMockTrips, MOCK_TRAINS } from '../mockData/aiPlanData';
 
-// Safely access Vite env or default to port 4000
 const API_BASE_URL =
   (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_API_URL) ||
   'http://localhost:4000/api';
 
 /**
  * Service API Layer
- * Connects directly to the Express backend-mock service running on port 4000.
- * If the mock backend is unavailable or offline, it gracefully falls back
- * to the client-side dynamic procedural generation engine.
+ * Connects to the JSON-RPC Express backend.
+ * Unpacks { status: "ok", data: ... } responses.
+ * Provides seamless local fallback if the backend is offline.
  */
 
 export async function fetchStations(): Promise<Station[]> {
@@ -28,22 +29,22 @@ export async function fetchStations(): Promise<Station[]> {
     const res = await fetch(`${API_BASE_URL}/stations`, { signal: AbortSignal.timeout(1500) });
     if (res.ok) {
       const json = await res.json();
-      if (json.data && Array.isArray(json.data) && json.data.length > 0) {
+      if (json.status === 'ok' && Array.isArray(json.data) && json.data.length > 0) {
         return json.data;
       }
     }
   } catch (_err) {
-    // Backend offline; fallback to local mock data
+    // Backend offline; fallback
   }
   return [...MOCK_STATIONS];
 }
 
 export async function fetchSupportedCorridors(): Promise<RouteCorridor[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/stations/meta/corridors`, { signal: AbortSignal.timeout(1500) });
+    const res = await fetch(`${API_BASE_URL}/corridors`, { signal: AbortSignal.timeout(1500) });
     if (res.ok) {
       const json = await res.json();
-      if (json.data && Array.isArray(json.data)) {
+      if (json.status === 'ok' && Array.isArray(json.data)) {
         return json.data;
       }
     }
@@ -53,134 +54,147 @@ export async function fetchSupportedCorridors(): Promise<RouteCorridor[]> {
   return [...SUPPORTED_CORRIDORS];
 }
 
-export async function fetchBlockSection(
+export async function fetchCorridorData(
   fromCode: string,
   toCode: string
-): Promise<BlockFeatureCollection> {
-  try {
-    const res = await fetch(
-      `${API_BASE_URL}/sections?from=${encodeURIComponent(fromCode)}&to=${encodeURIComponent(toCode)}`,
-      { signal: AbortSignal.timeout(2500) }
-    );
-    if (res.ok) {
-      const json = await res.json();
-      if (json.data && json.data.features) {
-        return json.data;
-      }
-    }
-  } catch (_err) {
-    // Backend offline; fallback
-  }
-
-  const localData = getBlockSectionsForRoute(fromCode, toCode);
-  if (!localData) {
-    throw new Error(`Unable to generate block section between ${fromCode} and ${toCode}`);
-  }
-  return localData;
-}
-
-export async function fetchAiPlan(
-  corridorKey: string,
-  blockIds: string[],
-  fromCode?: string,
-  toCode?: string
-): Promise<Record<string, AiPlanBlock>> {
-  try {
-    let url = `${API_BASE_URL}/ai-plan?`;
-    if (fromCode && toCode) {
-      url += `from=${encodeURIComponent(fromCode)}&to=${encodeURIComponent(toCode)}`;
-    } else {
-      url += `corridorKey=${encodeURIComponent(corridorKey)}&block_ids=${encodeURIComponent(blockIds.join(','))}`;
-    }
-    const res = await fetch(url, { signal: AbortSignal.timeout(2500) });
-    if (res.ok) {
-      const json = await res.json();
-      if (json.data) {
-        return json.data;
-      }
-    }
-  } catch (_err) {
-    // Fallback
-  }
-  return generateMockAiPlan(blockIds);
-}
-
-export async function fetchAssetData(
-  corridorKey: string,
-  blockIds: string[],
-  fromCode?: string,
-  toCode?: string
-): Promise<Record<string, AssetBlock>> {
-  try {
-    let url = `${API_BASE_URL}/assets?`;
-    if (fromCode && toCode) {
-      url += `from=${encodeURIComponent(fromCode)}&to=${encodeURIComponent(toCode)}`;
-    } else {
-      url += `corridorKey=${encodeURIComponent(corridorKey)}&block_ids=${encodeURIComponent(blockIds.join(','))}`;
-    }
-    const res = await fetch(url, { signal: AbortSignal.timeout(2500) });
-    if (res.ok) {
-      const json = await res.json();
-      if (json.data) {
-        return json.data;
-      }
-    }
-  } catch (_err) {
-    // Fallback
-  }
-  return generateMockAssetData(blockIds);
-}
-
-export async function submitBlockReport(
-  payload: SubmitIssuePayload
-): Promise<{ success: boolean; issue_id: string; timestamp: string }> {
-  // Required console logging per prompt
-  console.log('[Indian Railways Signal & Telemetry API] Report Submitted:', {
-    block_id: payload.block_id,
-    issue_type: payload.issue_type,
-    description: payload.description,
-    severity: payload.severity,
-    reported_by: payload.reported_by,
-    timestamp: payload.timestamp,
-  });
+): Promise<{ corridor: string; meta: RouteCorridor; trains: Train[]; resources: ResourceInfo[] }> {
+  const corridorKey = `${fromCode}_${toCode}`;
 
   try {
-    const res = await fetch(`${API_BASE_URL}/issues`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+    const res = await fetch(`${API_BASE_URL}/corridors/${encodeURIComponent(corridorKey)}`, {
       signal: AbortSignal.timeout(2500),
     });
     if (res.ok) {
       const json = await res.json();
-      return {
-        success: true,
-        issue_id: json.issue_id || `ISSUE-${Date.now()}`,
-        timestamp: json.timestamp || payload.timestamp,
-      };
+      if (json.status === 'ok' && json.data && json.data.resources) {
+        return json.data;
+      }
     }
   } catch (_err) {
     // Fallback
   }
 
+  const localResources = getBlockSectionsForRoute(fromCode, toCode) || [];
+  const foundCorridor =
+    SUPPORTED_CORRIDORS.find(
+      (c) =>
+        (c.fromCode === fromCode && c.toCode === toCode) ||
+        (c.fromCode === toCode && c.toCode === fromCode)
+    ) || {
+      id: 101,
+      code: corridorKey,
+      fromCode,
+      toCode,
+      name: `${fromCode} ↔ ${toCode} Corridor`,
+      zone: 'Indian Railways',
+      distance_km: 195,
+      total_blocks: localResources.length,
+      description: 'Standard Automatic Block Signal Territory.',
+    };
+
   return {
-    success: true,
-    issue_id: `ISSUE-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-    timestamp: payload.timestamp,
+    corridor: corridorKey,
+    meta: foundCorridor,
+    trains: MOCK_TRAINS,
+    resources: localResources,
   };
 }
 
-export async function resolveBlockIssue(
-  issueId: string,
-  blockId?: string
+export async function fetchPlan(
+  corridorKey: string,
+  resourceIds: ResourceId[]
+): Promise<Trip[]> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/plan?corridor=${encodeURIComponent(corridorKey)}`, {
+      signal: AbortSignal.timeout(2500),
+    });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.status === 'ok' && json.data?.trips) {
+        return json.data.trips;
+      }
+    }
+  } catch (_err) {
+    // Fallback
+  }
+  return generateMockTrips(resourceIds);
+}
+
+export async function submitResourceIssue(
+  resourceId: ResourceId,
+  body: SubmitIssueBody
+): Promise<{ success: boolean; issue_id: IssueId; severity: import('../types').IssueSeverity }> {
+  console.log(`[Indian Railways S&T API] Submitting issue on Resource ${resourceId}:`, body);
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/resource/${resourceId}/issue`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(2500),
+    });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.status === 'ok' && json.data?.issue_id) {
+        return {
+          success: true,
+          issue_id: json.data.issue_id,
+          severity: json.data.severity || body.severity || 'medium',
+        };
+      }
+    }
+  } catch (_err) {
+    // Fallback
+  }
+
+  const fallbackSeverity =
+    body.severity ||
+    (body.issue_type === 'obstruction'
+      ? 'high'
+      : body.issue_type === 'maintenance'
+      ? 'low'
+      : 'medium');
+
+  return {
+    success: true,
+    issue_id: Math.floor(Date.now() / 1000),
+    severity: fallbackSeverity,
+  };
+}
+
+export async function resolveResourceIssue(
+  resourceId: ResourceId,
+  issueId: IssueId
 ): Promise<{ success: boolean }> {
   try {
-    const url = `${API_BASE_URL}/issues/${encodeURIComponent(issueId)}${
-      blockId ? `?block_id=${encodeURIComponent(blockId)}` : ''
-    }`;
-    const res = await fetch(url, { method: 'DELETE', signal: AbortSignal.timeout(2500) });
+    const res = await fetch(`${API_BASE_URL}/resource/${resourceId}/issue/${issueId}`, {
+      method: 'DELETE',
+      signal: AbortSignal.timeout(2500),
+    });
     if (res.ok) {
-      return { success: true };
+      const json = await res.json();
+      return { success: json.status === 'ok' };
+    }
+  } catch (_err) {
+    // Fallback
+  }
+  return { success: true };
+}
+
+export async function blockResource(
+  resourceId: ResourceId,
+  block: ResourceBlock
+): Promise<{ success: boolean }> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/resource/${resourceId}/block`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(block),
+      signal: AbortSignal.timeout(2500),
+    });
+    if (res.ok) {
+      const json = await res.json();
+      return { success: json.status === 'ok' };
     }
   } catch (_err) {
     // Fallback

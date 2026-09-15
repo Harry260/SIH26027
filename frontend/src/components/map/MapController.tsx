@@ -6,7 +6,7 @@ import { useRailwayStore } from '../../store/useRailwayStore';
 export const MapController: React.FC = () => {
   const map = useMap();
   const screen = useRailwayStore((state) => state.screen);
-  const blocksData = useRailwayStore((state) => state.blocksData);
+  const resources = useRailwayStore((state) => state.resources);
   const fromStation = useRailwayStore((state) => state.fromStation);
   const toStation = useRailwayStore((state) => state.toStation);
   const stations = useRailwayStore((state) => state.stations);
@@ -31,10 +31,10 @@ export const MapController: React.FC = () => {
 
   // Screen 2: Fit bounds to block LineString geometry
   useEffect(() => {
-    if (screen === 'section' && blocksData && blocksData.features.length > 0) {
+    if (screen === 'section' && resources && resources.length > 0) {
       const allCoords: [number, number][] = [];
-      blocksData.features.forEach((feature) => {
-        feature.geometry.coordinates.forEach(([lng, lat]) => {
+      resources.forEach((r) => {
+        r.coordinates.forEach(([lng, lat]) => {
           allCoords.push([lat, lng]);
         });
       });
@@ -48,7 +48,7 @@ export const MapController: React.FC = () => {
         });
       }
     }
-  }, [screen, blocksData, map]);
+  }, [screen, resources, map]);
 
   return null;
 };

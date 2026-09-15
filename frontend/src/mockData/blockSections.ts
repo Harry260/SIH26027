@@ -1,9 +1,6 @@
-import { BlockFeature, BlockFeatureCollection, Station } from '../types';
+import { ResourceInfo, Station } from '../types';
 import { findStation } from './stations';
 
-/**
- * Calculates Great Circle distance between two lat/lng coordinates in km using Haversine formula
- */
 function calculateHaversineDistance(
   lat1: number,
   lng1: number,
@@ -23,10 +20,7 @@ function calculateHaversineDistance(
   return Math.round(R * c);
 }
 
-/**
- * Generates dynamic block sections between any two stations on the client side
- */
-function generateDynamicBlockSections(fromStation: Station, toStation: Station): BlockFeatureCollection {
+export function generateDynamicResources(fromStation: Station, toStation: Station): ResourceInfo[] {
   const straightDist = calculateHaversineDistance(
     fromStation.lat,
     fromStation.lng,
@@ -58,60 +52,54 @@ function generateDynamicBlockSections(fromStation: Station, toStation: Station):
     coords.push([Number(lng.toFixed(6)), Number(lat.toFixed(6))]);
   }
 
-  const features: BlockFeature[] = [];
+  const resources: ResourceInfo[] = [];
   const pointsPerBlock = Math.floor(coords.length / numBlocks);
+  const baseResourceId = fromStation.id * 1000 + toStation.id * 10;
 
   for (let i = 0; i < numBlocks; i++) {
     const startIdx = i * pointsPerBlock;
     const endIdx = i === numBlocks - 1 ? coords.length : (i + 1) * pointsPerBlock + 1;
     const blockCoords = coords.slice(startIdx, endIdx);
     const seq = i + 1;
-    const blockId = `${fromStation.code}-${toStation.code}-BLK-${String(seq).padStart(2, '0')}`;
+    const resourceId = baseResourceId + seq;
+    const mid = blockCoords[Math.floor(blockCoords.length / 2)] || [fromStation.lng, fromStation.lat];
 
-    features.push({
-      type: 'Feature',
-      geometry: {
-        type: 'LineString',
-        coordinates: blockCoords,
+    resources.push({
+      resource: {
+        id: resourceId,
+        kind: 'block_section',
+        lane_count: 2,
       },
-      properties: {
-        block_id: blockId,
-        sequence: seq,
-        start_signal: `ABS-${fromStation.code}-${100 + i * 2}UP`,
-        end_signal: `ABS-${fromStation.code}-${102 + i * 2}UP`,
-        occupancy: i === 3 ? 'occupied' : i === 4 ? 'reserved' : 'free',
-        train_id: i === 3 ? '22436' : undefined,
-        train_name: i === 3 ? 'Vande Bharat Express' : undefined,
-        length_m: 1200 + (i % 5) * 100,
-        max_speed_kmh: 130,
-        gradient: i % 3 === 0 ? 'Level' : i % 3 === 1 ? '1 in 200 Rising' : '1 in 150 Falling',
-        issues:
-          i === 7
-            ? [
-                {
-                  issue_id: `ISSUE-${fromStation.code}-07`,
-                  issue_type: 'speed_restriction',
-                  description: 'Caution Order 40 km/h active due to ballast stabilization',
-                  severity: 'medium',
-                  reported_by: 'P-WAY Section Incharge',
-                  timestamp: new Date(Date.now() - 30 * 60000).toISOString(),
-                },
-              ]
-            : [],
-      },
+      name: `ABS-${fromStation.code}-${100 + i * 2}UP`,
+      sequence: seq,
+      location: [mid[0], mid[1]],
+      coordinates: blockCoords,
+      length_m: 1200 + (i % 5) * 100,
+      max_speed_kmh: 130,
+      gradient: i % 3 === 0 ? 'Level' : i % 3 === 1 ? '1 in 200 Rising' : '1 in 150 Falling',
+      occupancy: i === 3 ? 'occupied' : i === 4 ? 'reserved' : 'free',
+      active_train: i === 3 ? 22436 : undefined,
+      train_name: i === 3 ? 'Vande Bharat Express' : undefined,
+      issues:
+        i === 7
+          ? [
+              {
+                issue_id: 1001,
+                issue_type: 'speed_restriction',
+                description: 'Caution Order 40 km/h active due to ballast stabilization',
+                severity: 'medium',
+                reported_by: 'P-WAY Section Incharge',
+                timestamp: new Date(Date.now() - 30 * 60000).toISOString(),
+              },
+            ]
+          : [],
     });
   }
 
-  return {
-    type: 'FeatureCollection',
-    features,
-  };
+  return resources;
 }
 
-/**
- * Returns block GeoJSON for any corridor
- */
-export function getBlockSectionsForRoute(fromCode: string, toCode: string): BlockFeatureCollection | null {
+export function getBlockSectionsForRoute(fromCode: string, toCode: string): ResourceInfo[] | null {
   const fromStation = findStation(fromCode);
   const toStation = findStation(toCode);
 
@@ -119,5 +107,5 @@ export function getBlockSectionsForRoute(fromCode: string, toCode: string): Bloc
     return null;
   }
 
-  return generateDynamicBlockSections(fromStation, toStation);
+  return generateDynamicResources(fromStation, toStation);
 }

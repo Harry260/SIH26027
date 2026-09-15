@@ -1,39 +1,45 @@
-import { AiPlanBlock } from '../types';
+import { Trip, Train, ResourceId, Time } from '../types';
 
-export function generateMockAiPlan(blockIds: string[]): Record<string, AiPlanBlock> {
-  const planMap: Record<string, AiPlanBlock> = {};
-  const baseTime = new Date();
+export const MOCK_TRAINS: Train[] = [
+  { id: 12002, name: 'Bhopal Shatabdi Express', max_speed_kmh: 130, priority_tier: 'Premier' },
+  { id: 22436, name: 'Vande Bharat Express', max_speed_kmh: 140, priority_tier: 'Premier' },
+  { id: 12952, name: 'Mumbai Tejas Rajdhani', max_speed_kmh: 130, priority_tier: 'Premier' },
+  { id: 8842,  name: 'Heavy-Haul Coal Freight', max_speed_kmh: 75, priority_tier: 'Freight' },
+];
 
-  // Pattern of 4 distinct trains traversing the corridor
-  const trainRoster = [
-    { id: '12002', name: 'Bhopal Shatabdi', priority: 'Premier' as const, baseSpeed: 130 },
-    { id: '22436', name: 'Vande Bharat Express', priority: 'Premier' as const, baseSpeed: 145 },
-    { id: '12952', name: 'Mumbai Rajdhani', priority: 'Premier' as const, baseSpeed: 135 },
-    { id: 'BOXN-8842', name: 'Container Freight', priority: 'Freight' as const, baseSpeed: 85 },
-    { id: '12424', name: 'Dibrugarh Rajdhani', priority: 'Express' as const, baseSpeed: 120 },
-  ];
+export function generateMockTrips(resourceIds: ResourceId[]): Trip[] {
+  const baseMinutes: Time = 600; // 10:00 AM
 
-  blockIds.forEach((blockId, idx) => {
-    // Train assignment rhythm across blocks
-    const trainIdx = Math.floor(idx / 4) % trainRoster.length;
-    const train = trainRoster[trainIdx];
+  return MOCK_TRAINS.map((train, idx) => {
+    const tripId = 501 + idx;
+    const startOffset = idx * 30;
+    const tripStart: Time = baseMinutes + startOffset;
 
-    const offsetMinutes = (idx % 4) * 6 + Math.floor(idx / 4) * 20;
-    const entryDate = new Date(baseTime.getTime() + offsetMinutes * 60000);
-    const exitDate = new Date(entryDate.getTime() + 4.5 * 60000);
+    const allocations = resourceIds.map((resId, rIdx) => {
+      const entry: Time = tripStart + 5 + Math.round(rIdx * 3.2);
+      const exit: Time = entry + 3;
+      return {
+        resource_id: resId,
+        entry_time: entry,
+        exit_time: exit,
+        planned_speed_kmh: (train.max_speed_kmh || 120) - 5,
+        headway_seconds: 240,
+      };
+    });
 
-    planMap[blockId] = {
-      block_id: blockId,
-      train_id: train.id,
+    const now = new Date();
+    now.setHours(Math.floor(tripStart / 60), tripStart % 60, 0, 0);
+
+    return {
+      id: tripId,
+      train: train.id,
       train_name: train.name,
-      entry_time: entryDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      exit_time: exitDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      planned_speed_kmh: train.baseSpeed,
-      headway_seconds: 180 + (idx % 3) * 30,
-      priority_tier: train.priority,
+      start_time: now.toISOString(),
+      stations: [
+        { station_id: 1, station_code: 'NDLS', arrival: tripStart, departure: tripStart + 5, min_dwell: 5 },
+        { station_id: 13, station_code: 'AGC', arrival: tripStart + 90, departure: tripStart + 95, min_dwell: 5 },
+      ],
+      resource_allocations: allocations,
     };
   });
-
-  return planMap;
 }
-

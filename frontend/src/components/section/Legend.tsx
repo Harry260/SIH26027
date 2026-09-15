@@ -16,7 +16,7 @@ export const Legend: React.FC = () => {
         <div className="flex items-center gap-2">
           <Info className="w-4 h-4 text-primary dark:text-primary-dark" />
           <span className="text-xs font-semibold uppercase tracking-wider text-ink dark:text-white">
-            {mode === 'report' ? 'Signal & Status Guide' : mode === 'ai-plan' ? 'AI Train Schedules' : 'Asset Idle Scale'}
+            {mode === 'report' ? 'Signal & Status Guide' : 'AI Train Schedules'}
           </span>
         </div>
         <button className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
@@ -116,44 +116,6 @@ export const Legend: React.FC = () => {
 
               <div className="mt-2 p-2 bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded-lg text-[11px] leading-snug">
                 Hover over blocks to inspect planned entry/exit timestamps & headway intervals.
-              </div>
-            </div>
-          )}
-
-          {mode === 'asset' && (
-            <div className="space-y-3 pt-1">
-              <p className="text-zinc-600 dark:text-zinc-300 text-[11px]">
-                Asset Idle Delay Contributed (Minutes):
-              </p>
-
-              {/* Gradient bar representation */}
-              <div className="h-3 w-full rounded-full overflow-hidden flex shadow-inner">
-                <div className="bg-[#30d158] flex-1" title="0-10m Optimal" />
-                <div className="bg-[#64d2ff] flex-1" title="11-25m Low" />
-                <div className="bg-[#ffd60a] flex-1" title="26-50m Moderate" />
-                <div className="bg-[#ff9f0a] flex-1" title="51-90m High" />
-                <div className="bg-[#ff453a] flex-1" title="90m+ Critical" />
-              </div>
-
-              <div className="flex justify-between text-[10px] text-zinc-400 px-0.5">
-                <span>0m (Optimal)</span>
-                <span>45m</span>
-                <span>120m+ (Severe)</span>
-              </div>
-
-              <div className="space-y-1 pt-1 text-[11px]">
-                <div className="flex items-center justify-between">
-                  <span className="text-emerald-600 dark:text-emerald-400 font-medium">≤ 10 min</span>
-                  <span className="text-zinc-500 dark:text-zinc-400">Normal Flow</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-amber-500 font-medium">26 – 90 min</span>
-                  <span className="text-zinc-500 dark:text-zinc-400">Caution Delay</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-red-500 font-medium">&gt; 90 min</span>
-                  <span className="text-zinc-500 dark:text-zinc-400">Critical Bottleneck</span>
-                </div>
               </div>
             </div>
           )}

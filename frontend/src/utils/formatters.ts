@@ -1,4 +1,4 @@
-import { IssueSeverity, IssueType } from '../types';
+import { IssueSeverity, IssueType, Time } from '../types';
 
 export function formatTimestamp(isoString: string): string {
   try {
@@ -7,6 +7,29 @@ export function formatTimestamp(isoString: string): string {
   } catch {
     return isoString;
   }
+}
+
+/**
+ * Formats relative Time (minutes from midnight 0-1440) as HH:MM AM/PM
+ */
+export function formatTime(minutes: Time): string {
+  const normalized = Math.max(0, minutes % 1440);
+  const hours = Math.floor(normalized / 60);
+  const mins = normalized % 60;
+  const period = hours >= 12 ? 'PM' : 'AM';
+  const displayHours = hours % 12 === 0 ? 12 : hours % 12;
+  const displayMins = mins.toString().padStart(2, '0');
+  return `${displayHours}:${displayMins} ${period}`;
+}
+
+/**
+ * Formats relative Time in 24h format HH:MM
+ */
+export function formatTime24h(minutes: Time): string {
+  const normalized = Math.max(0, minutes % 1440);
+  const hours = Math.floor(normalized / 60).toString().padStart(2, '0');
+  const mins = (normalized % 60).toString().padStart(2, '0');
+  return `${hours}:${mins}`;
 }
 
 export function formatIssueTypeName(type: IssueType | string): string {
@@ -48,4 +71,3 @@ export function getSeverityBadgeColor(severity: IssueSeverity): { bg: string; te
       };
   }
 }
-

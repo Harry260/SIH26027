@@ -1,12 +1,12 @@
 import React from 'react';
 import { Clock, User, Check, AlertTriangle, Flame, ShieldAlert } from 'lucide-react';
-import { BlockIssue } from '../../types';
+import { BlockIssue, IssueId } from '../../types';
 import { formatIssueTypeName, formatTimestamp, getSeverityBadgeColor } from '../../utils/formatters';
 import { Button } from '../common/Button';
 
 interface IssueCardProps {
   issue: BlockIssue;
-  onResolve: (issueId: string) => void;
+  onResolve: (issueId: IssueId) => void;
 }
 
 export const IssueCard: React.FC<IssueCardProps> = ({ issue, onResolve }) => {

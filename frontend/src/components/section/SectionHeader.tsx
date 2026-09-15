@@ -7,10 +7,10 @@ import { Button } from '../common/Button';
 
 export const SectionHeader: React.FC = () => {
   const currentCorridor = useRailwayStore((state) => state.currentCorridor);
-  const blocksData = useRailwayStore((state) => state.blocksData);
+  const resources = useRailwayStore((state) => state.resources);
   const resetToSelection = useRailwayStore((state) => state.resetToSelection);
 
-  const blockCount = blocksData?.features?.length || 0;
+  const blockCount = resources.length;
 
   return (
     <header className="fixed top-4 inset-x-4 z-40 flex items-center justify-between pointer-events-none">

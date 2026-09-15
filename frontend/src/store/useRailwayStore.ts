@@ -2,20 +2,22 @@ import { create } from 'zustand';
 import {
   Station,
   RouteCorridor,
-  BlockFeatureCollection,
-  AiPlanBlock,
-  AssetBlock,
+  ResourceInfo,
+  Train,
+  Trip,
   AppMode,
-  SubmitIssuePayload,
+  ResourceId,
+  IssueId,
+  SubmitIssueBody,
   BlockIssue,
 } from '../types';
 import {
   fetchStations,
   fetchSupportedCorridors,
-  fetchBlockSection,
-  fetchAiPlan,
-  fetchAssetData,
-  submitBlockReport,
+  fetchCorridorData,
+  fetchPlan,
+  submitResourceIssue,
+  resolveResourceIssue,
 } from '../services/api';
 
 interface RailwayState {
@@ -35,16 +37,16 @@ interface RailwayState {
 
   // Screen 2 Section & Map State
   currentCorridor: RouteCorridor | null;
-  blocksData: BlockFeatureCollection | null;
-  aiPlanData: Record<string, AiPlanBlock> | null;
-  assetData: Record<string, AssetBlock> | null;
+  resources: ResourceInfo[];
+  trains: Train[];
+  trips: Trip[];
 
   // Active View & Interactions
   mode: AppMode;
   isLoadingMode: boolean;
   isLoadingSection: boolean;
-  selectedBlockId: string | null;
-  hoveredBlockId: string | null;
+  selectedResourceId: ResourceId | null;
+  hoveredResourceId: ResourceId | null;
   toastMessage: string | null;
 
   // Actions
@@ -54,15 +56,16 @@ interface RailwayState {
   selectCorridorPreset: (from: string, to: string) => void;
   loadSection: (fromCode?: string, toCode?: string) => Promise<void>;
   setMode: (mode: AppMode) => Promise<void>;
-  setSelectedBlock: (blockId: string | null) => void;
-  setHoveredBlock: (blockId: string | null) => void;
-  addBlockIssue: (payload: {
-    block_id: string;
-    issue_type: SubmitIssuePayload['issue_type'];
-    description: string;
-    severity: SubmitIssuePayload['severity'];
-  }) => Promise<void>;
-  resolveBlockIssue: (blockId: string, issueId: string) => void;
+  setSelectedResource: (resourceId: ResourceId | null) => void;
+  setHoveredResource: (resourceId: ResourceId | null) => void;
+  addResourceIssue: (
+    resourceId: ResourceId,
+    body: SubmitIssueBody
+  ) => Promise<void>;
+  resolveResourceIssueAction: (
+    resourceId: ResourceId,
+    issueId: IssueId
+  ) => Promise<void>;
   toggleTheme: () => void;
   resetToSelection: () => void;
   clearToast: () => void;
@@ -88,15 +91,15 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
   selectionError: null,
 
   currentCorridor: null,
-  blocksData: null,
-  aiPlanData: null,
-  assetData: null,
+  resources: [],
+  trains: [],
+  trips: [],
 
   mode: 'report',
   isLoadingMode: false,
   isLoadingSection: false,
-  selectedBlockId: null,
-  hoveredBlockId: null,
+  selectedResourceId: null,
+  hoveredResourceId: null,
   toastMessage: null,
 
   initialize: async () => {
@@ -111,7 +114,6 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
         isLoadingInit: false,
       });
 
-      // Apply theme to document
       const currentTheme = get().theme;
       if (currentTheme === 'dark') {
         document.documentElement.classList.add('dark');
@@ -153,40 +155,19 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
     set({ isLoadingSection: true, selectionError: null });
 
     try {
-      const blocksGeoJson = await fetchBlockSection(fromCode, toCode);
-      const corridorKey = `${fromCode}_${toCode}`;
-      const blockIds = blocksGeoJson.features.map((f) => f.properties.block_id);
-
-      // Fetch accompanying mock datasets for AI plan and Asset mode
-      const [aiPlan, assetData] = await Promise.all([
-        fetchAiPlan(corridorKey, blockIds),
-        fetchAssetData(corridorKey, blockIds),
-      ]);
-
-      const foundCorridor =
-        get().supportedCorridors.find(
-          (c) =>
-            (c.fromCode === fromCode && c.toCode === toCode) ||
-            (c.fromCode === toCode && c.toCode === fromCode)
-        ) || {
-          fromCode,
-          toCode,
-          name: `${fromCode} ↔ ${toCode} Railway Section`,
-          zone: 'Indian Railways Mainline',
-          distance_km: 195,
-          total_blocks: blocksGeoJson.features.length,
-          description: 'Standard Automatic Block Signal Section.',
-        };
+      const corridorData = await fetchCorridorData(fromCode, toCode);
+      const resourceIds = corridorData.resources.map((r) => r.resource.id);
+      const trips = await fetchPlan(corridorData.corridor, resourceIds);
 
       set({
-        blocksData: blocksGeoJson,
-        aiPlanData: aiPlan,
-        assetData: assetData,
-        currentCorridor: foundCorridor,
+        resources: corridorData.resources,
+        trains: corridorData.trains,
+        trips,
+        currentCorridor: corridorData.meta,
         screen: 'section',
         mode: 'report',
-        selectedBlockId: null,
-        hoveredBlockId: null,
+        selectedResourceId: null,
+        hoveredResourceId: null,
         isLoadingSection: false,
       });
     } catch (err: unknown) {
@@ -201,12 +182,10 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
   setMode: async (newMode: AppMode) => {
     if (get().mode === newMode || get().isLoadingMode) return;
 
-    // Simulate lazy-loaded API call with 300-500ms delay per spec
     set({ isLoadingMode: true });
 
-    // Deselect active block report panel if switching away from Report Mode
     if (newMode !== 'report') {
-      set({ selectedBlockId: null });
+      set({ selectedResourceId: null });
     }
 
     await new Promise((resolve) => setTimeout(resolve, 380));
@@ -217,87 +196,68 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
     });
   },
 
-  setSelectedBlock: (blockId) => {
-    // Blocks are only clickable in report mode
+  setSelectedResource: (resourceId) => {
     if (get().mode === 'report') {
-      set({ selectedBlockId: blockId });
+      set({ selectedResourceId: resourceId });
     }
   },
 
-  setHoveredBlock: (blockId) => {
-    set({ hoveredBlockId: blockId });
+  setHoveredResource: (resourceId) => {
+    set({ hoveredResourceId: resourceId });
   },
 
-  addBlockIssue: async ({ block_id, issue_type, description, severity }) => {
-    const payload: SubmitIssuePayload = {
-      block_id,
-      issue_type,
-      description,
-      severity,
-      reported_by: 'controller_demo',
-      timestamp: new Date().toISOString(),
-    };
+  addResourceIssue: async (resourceId, body) => {
+    const timestamp = body.timestamp || new Date().toISOString();
+    const response = await submitResourceIssue(resourceId, {
+      ...body,
+      timestamp,
+    });
 
-    const response = await submitBlockReport(payload);
+    const assignedSeverity = response.severity || body.severity || 'medium';
 
     const newIssue: BlockIssue = {
       issue_id: response.issue_id,
-      issue_type: issue_type as BlockIssue['issue_type'],
-      description,
-      severity,
-      reported_by: payload.reported_by,
-      timestamp: payload.timestamp,
+      issue_type: body.issue_type,
+      description: body.description,
+      severity: assignedSeverity,
+      reported_by: body.reported_by || 'Chief Section Controller',
+      timestamp,
     };
 
-    // Update block issues array immutably
-    const currentBlocks = get().blocksData;
-    if (!currentBlocks) return;
-
-    const updatedFeatures = currentBlocks.features.map((feature) => {
-      if (feature.properties.block_id === block_id) {
+    const currentResources = get().resources;
+    const updated = currentResources.map((res) => {
+      if (res.resource.id === resourceId) {
         return {
-          ...feature,
-          properties: {
-            ...feature.properties,
-            issues: [...feature.properties.issues, newIssue],
-          },
+          ...res,
+          issues: [newIssue, ...res.issues],
         };
       }
-      return feature;
+      return res;
     });
 
     set({
-      blocksData: {
-        ...currentBlocks,
-        features: updatedFeatures,
-      },
-      toastMessage: `Issue recorded for ${block_id}. Derived block status updated.`,
+      resources: updated,
+      toastMessage: `Issue #${response.issue_id} recorded on Resource #${resourceId} (${assignedSeverity.toUpperCase()} severity). Block status recalculated.`,
     });
   },
 
-  resolveBlockIssue: (blockId, issueId) => {
-    const currentBlocks = get().blocksData;
-    if (!currentBlocks) return;
+  resolveResourceIssueAction: async (resourceId, issueId) => {
+    await resolveResourceIssue(resourceId, issueId);
 
-    const updatedFeatures = currentBlocks.features.map((feature) => {
-      if (feature.properties.block_id === blockId) {
+    const currentResources = get().resources;
+    const updated = currentResources.map((res) => {
+      if (res.resource.id === resourceId) {
         return {
-          ...feature,
-          properties: {
-            ...feature.properties,
-            issues: feature.properties.issues.filter((i) => i.issue_id !== issueId),
-          },
+          ...res,
+          issues: res.issues.filter((i) => i.issue_id !== issueId),
         };
       }
-      return feature;
+      return res;
     });
 
     set({
-      blocksData: {
-        ...currentBlocks,
-        features: updatedFeatures,
-      },
-      toastMessage: `Issue resolved on block ${blockId}. Status recalculated.`,
+      resources: updated,
+      toastMessage: `Issue #${issueId} resolved. Status recalculated.`,
     });
   },
 
@@ -315,8 +275,8 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
   resetToSelection: () => {
     set({
       screen: 'selection',
-      selectedBlockId: null,
-      hoveredBlockId: null,
+      selectedResourceId: null,
+      hoveredResourceId: null,
       mode: 'report',
     });
   },
@@ -325,4 +285,3 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
     set({ toastMessage: null });
   },
 }));
-
