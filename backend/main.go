@@ -10,6 +10,9 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	sql "database/sql"
+	"net/http"
 )
 import "github.com/draffensperger/golp"
 
@@ -347,76 +350,25 @@ func readRowsFromCsv[T any](path string, dest *[]T) error {
 	return nil
 }
 
+var applicationStartTime time.Time
+var db sql.DB
+
 func main() {
+	applicationStartTime = time.Now()
 
-	table := Timetable{
-		Stations: []Station{
-			{
-				Name:          "Northfield",
-				PlatformCount: 2,
-			},
-			{
-				Name:          "Riverside",
-				PlatformCount: 3,
-			},
-			{
-				Name:          "Central",
-				PlatformCount: 2,
-			},
-			{
-				Name:          "Oak Junction",
-				PlatformCount: 4,
-			},
-			{
-				Name:          "Southport",
-				PlatformCount: 1,
-			},
-		},
+	http.HandleFunc("GET  /api/health", APIGetHealth)
+	http.HandleFunc("GET  /api/stations", APIGetStations)
+	http.HandleFunc("GET  /api/corridoors", APIGetCorridoors)
+	http.HandleFunc("GET  /api/corridoors/:corridoor", APIGetCorridoorsCorridoor)
+	http.HandleFunc("GET  /api/train/:trainid", APIGetTrainTrainID)
+	http.HandleFunc("GET  /api/resource/:resourceid", APIGetResourceResourceID)
+	http.HandleFunc("GET  /api/resource/:resourceid/issue", APIGetResourceResourceIDIssue)
+	http.HandleFunc("POST /api/resource/:resourceid/issue", APIPostResourceResourceIDIssue)
+	http.HandleFunc("POST /api/resource/:resourceid/block", APIPostResourceResourceIDBlock)
+	http.HandleFunc("POST /api/plan", APIPostPlan)
+	http.HandleFunc("GET  /api/plan", APIGetPlan)
 
-		Trains: []Train{
-			{
-				Name:      "N1",
-				Stations:  []int{0, 1, 2, 3, 4},
-				Arrival:   []Time{480, 493, 516, 524, 540},
-				MinDwell:  []Time{1, 1, 2, 1, 0},
-				Departure: []Time{480, 494, 520, 525, 540},
-				Travel:    []int{13, 15, 13, 15},
-			},
-			{
-				Name:      "S1",
-				Stations:  []int{4, 3, 2, 1, 0},
-				Arrival:   []Time{485, 501, 516, 532, 546},
-				MinDwell:  []Time{0, 1, 2, 1, 0},
-				Departure: []Time{485, 502, 518, 533, 546},
-				Travel:    []int{16, 14, 14, 13},
-			},
-			{
-				Name:      "N2",
-				Stations:  []int{0, 1, 2, 3, 4},
-				Arrival:   []Time{570, 583, 599, 614, 630},
-				MinDwell:  []Time{1, 1, 2, 1, 0},
-				Departure: []Time{570, 584, 601, 615, 630},
-				Travel:    []int{13, 15, 13, 15},
-			},
-			{
-				Name:      "S2",
-				Stations:  []int{4, 3, 2, 1, 0},
-				Arrival:   []Time{575, 591, 606, 622, 636},
-				MinDwell:  []Time{0, 1, 2, 1, 0},
-				Departure: []Time{575, 592, 608, 623, 636},
-				Travel:    []int{16, 14, 14, 13},
-			},
-		},
-	}
-
-	for train_id := range table.Trains {
-		train := &table.Trains[train_id]
-		train.Departure = make([]Time, len(train.Arrival))
-		for i := range train.Departure {
-			train.Departure[i] = train.Arrival[i] + train.MinDwell[i]
-		}
-	}
-	_ = Plan(table)
-
+	http.HandleFunc("GET /api/health", APIGetHealth)
+	http.ListenAndServe(":4040", nil)
 	fmt.Println("Hello world")
 }

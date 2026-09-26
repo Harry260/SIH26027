@@ -1,7 +1,7 @@
 #!/bin/sh -ex
 
 (
-cd vendor/github.com/draffensperger/golp/lp_solve/lp_solve/
+cd vendor/github.com/draffensperger/golp/lp_solve/lpsolve55/
 sh ccc
 )
 

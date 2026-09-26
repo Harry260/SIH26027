@@ -1,0 +1,12 @@
+#!/bin/sh -x
+# Fetches liblpsolve and sets it up
+cd ./vendor/github.com/draffensperger/golp/
+
+git clone https://github.com/lp-solve/lp_solve
+
+mkdir lpsolve
+cd lpsolve
+for file in ../lp_solve/*.h; do
+	ln -s "$file" .
+done
+ln -s "../lp_solve/lpsolve55/bin/ux64/liblpsolve55.so" liblpsolve55.so
