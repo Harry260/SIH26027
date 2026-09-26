@@ -1,0 +1,8 @@
+#!/bin/sh -ex
+
+(
+cd vendor/github.com/draffensperger/golp/lp_solve/lp_solve/
+sh ccc
+)
+
+CGO_CFLAGS="-I ./vendor/github.com/draffensperger/golp/lp_solve/" go build .
