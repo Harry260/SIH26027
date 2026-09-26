@@ -1,17 +1,14 @@
 import { Router, Request, Response } from 'express';
 import {
   INDIAN_RAILWAY_STATIONS,
-  POPULAR_CORRIDORS,
   findStationByCode,
+  findStationById,
 } from '../data/stations.js';
 
 export const stationsRouter = Router();
 
 /**
  * GET /api/stations
- * Query params:
- *  - q: search keyword matching code, name, state, or zone
- *  - zone: filter by railway zone (e.g. NR, WR, SR)
  */
 stationsRouter.get('/', (req: Request, res: Response) => {
   const { q, zone } = req.query;
@@ -35,39 +32,32 @@ stationsRouter.get('/', (req: Request, res: Response) => {
   }
 
   res.json({
-    success: true,
-    total: stations.length,
+    status: 'ok',
     data: stations,
   });
 });
 
 /**
- * GET /api/stations/:code
+ * GET /api/stations/:idOrCode
  */
-stationsRouter.get('/:code', (req: Request, res: Response) => {
-  const { code } = req.params;
-  const station = findStationByCode(code);
+stationsRouter.get('/:idOrCode', (req: Request, res: Response) => {
+  const { idOrCode } = req.params;
+  const num = parseInt(idOrCode, 10);
+  const station = !isNaN(num)
+    ? findStationById(num)
+    : findStationByCode(idOrCode);
+
   if (!station) {
-    return res.status(404).json({
-      success: false,
-      error: `Station with code '${code}' not found`,
+    return res.json({
+      status: 'error',
+      data: {
+        message: `Station '${idOrCode}' not found`,
+      },
     });
   }
 
   res.json({
-    success: true,
+    status: 'ok',
     data: station,
   });
 });
-
-/**
- * GET /api/corridors
- */
-stationsRouter.get('/meta/corridors', (_req: Request, res: Response) => {
-  res.json({
-    success: true,
-    total: POPULAR_CORRIDORS.length,
-    data: POPULAR_CORRIDORS,
-  });
-});
-

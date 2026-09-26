@@ -124,6 +124,19 @@ export interface ResourceBlock {
 }
 
 // ------------------------------------------
+// Timetable Optimization (LP Solver Interface)
+// ------------------------------------------
+export interface TimetableInput {
+  trips: Trip[];
+  resources: Resource[];
+  repairs: RepairRequest[];
+}
+
+export interface TimetableOutput {
+  trips: Trip[];
+}
+
+// ------------------------------------------
 // Station & Corridor Metadata
 // ------------------------------------------
 export interface Station {

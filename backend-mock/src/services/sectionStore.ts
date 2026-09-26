@@ -1,127 +1,249 @@
 import {
-  BlockFeatureCollection,
-  BlockFeature,
-  BlockProperties,
+  Station,
+  ResourceInfo,
+  Train,
+  Trip,
   BlockIssue,
-  SubmitIssuePayload,
+  ResourceId,
+  TrainId,
+  IssueId,
+  IssueType,
+  IssueSeverity,
+  SubmitIssueBody,
+  ResourceBlock,
+  RepairRequest,
+  RouteCorridor,
 } from '../types/index.js';
 import {
   findStationByCode,
-  INDIAN_RAILWAY_STATIONS,
+  POPULAR_CORRIDORS,
 } from '../data/stations.js';
-import { generateBlockSectionsForCorridor } from '../generators/blockGenerator.js';
+import {
+  generateResourcesForCorridor,
+  getNextIssueId,
+} from '../generators/resourceGenerator.js';
+import {
+  generateTripsForCorridor,
+  solveTimetablePlan,
+} from '../generators/planGenerator.js';
 
-class SectionStore {
-  private cache: Map<string, BlockFeatureCollection> = new Map();
+export interface CorridorData {
+  corridor: string;
+  fromStation: Station;
+  toStation: Station;
+  meta: RouteCorridor;
+  trains: Train[];
+  trips: Trip[];
+  resources: ResourceInfo[];
+  repairs: RepairRequest[];
+}
 
-  private normalizeKey(fromCode: string, toCode: string): string {
-    return `${fromCode.trim().toUpperCase()}_${toCode.trim().toUpperCase()}`;
+class CorridorStore {
+  private cache: Map<string, CorridorData> = new Map();
+
+  public normalizeKey(corridorStr: string): { from: string; to: string; key: string } {
+    const clean = corridorStr.trim().toUpperCase().replace('-', '_');
+    const parts = clean.split('_');
+    if (parts.length >= 2) {
+      return { from: parts[0], to: parts[1], key: `${parts[0]}_${parts[1]}` };
+    }
+    return { from: clean, to: '', key: clean };
   }
 
   /**
-   * Retrieves an existing corridor section or dynamically generates and caches a new one
+   * Retrieves or dynamically initializes a corridor
    */
-  public getOrCreateSection(fromCode: string, toCode: string): BlockFeatureCollection {
-    const key = this.normalizeKey(fromCode, toCode);
+  public getOrCreateCorridor(corridorStr: string): CorridorData {
+    const { from, to, key } = this.normalizeKey(corridorStr);
     const existing = this.cache.get(key);
     if (existing) {
       return existing;
     }
 
-    const fromStation = findStationByCode(fromCode);
-    const toStation = findStationByCode(toCode);
+    const fromStation = findStationByCode(from);
+    const toStation = findStationByCode(to);
 
     if (!fromStation) {
-      throw new Error(`Station not found with code: '${fromCode}'`);
+      throw new Error(`Station not found with code: '${from}'`);
     }
     if (!toStation) {
-      throw new Error(`Station not found with code: '${toCode}'`);
+      throw new Error(`Station not found with code: '${to}'`);
     }
 
-    const generated = generateBlockSectionsForCorridor(fromStation, toStation);
-    this.cache.set(key, generated);
-    return generated;
+    const { resources, totalBlocks, distanceKm } = generateResourcesForCorridor(
+      fromStation,
+      toStation
+    );
+
+    const resourceIds = resources.map((r) => r.resource.id);
+    const { trains, trips } = generateTripsForCorridor(
+      fromStation,
+      toStation,
+      resourceIds,
+      key
+    );
+
+    const meta: RouteCorridor = POPULAR_CORRIDORS.find(
+      (c) =>
+        (c.fromCode === from && c.toCode === to) ||
+        (c.fromCode === to && c.toCode === from)
+    ) || {
+      id: fromStation.id * 100 + toStation.id,
+      code: key,
+      fromCode: from,
+      toCode: to,
+      name: `${fromStation.name} ↔ ${toStation.name} Corridor`,
+      zone: fromStation.zone,
+      distance_km: distanceKm,
+      total_blocks: totalBlocks,
+      description: 'Standard Automatic Block Signal Territory.',
+    };
+
+    const data: CorridorData = {
+      corridor: key,
+      fromStation,
+      toStation,
+      meta,
+      trains,
+      trips,
+      resources,
+      repairs: [],
+    };
+
+    this.cache.set(key, data);
+    return data;
   }
 
-  /**
-   * Finds a block feature by block_id across all cached sections
-   */
-  public findBlock(blockId: string): { feature: BlockFeature; sectionKey: string } | undefined {
-    for (const [sectionKey, collection] of this.cache.entries()) {
-      const match = collection.features.find((f) => f.properties.block_id === blockId);
+  public findResource(
+    resourceId: ResourceId
+  ): { resourceInfo: ResourceInfo; corridor: CorridorData } | undefined {
+    for (const corridor of this.cache.values()) {
+      const match = corridor.resources.find((r) => r.resource.id === resourceId);
       if (match) {
-        return { feature: match, sectionKey };
+        return { resourceInfo: match, corridor };
       }
     }
     return undefined;
   }
 
-  /**
-   * Adds an issue to a block in memory
-   */
-  public addIssue(
-    payload: SubmitIssuePayload
-  ): { success: boolean; issue: BlockIssue; blockId: string } {
-    let target = this.findBlock(payload.block_id);
-
-    // If block is not yet cached and fromCode/toCode are provided, generate the section first
-    if (!target && payload.fromCode && payload.toCode) {
-      this.getOrCreateSection(payload.fromCode, payload.toCode);
-      target = this.findBlock(payload.block_id);
+  public findTrain(trainId: TrainId): Train | undefined {
+    for (const corridor of this.cache.values()) {
+      const match = corridor.trains.find((t) => t.id === trainId);
+      if (match) {
+        return match;
+      }
     }
+    return undefined;
+  }
+
+  public getResourceIssues(resourceId: ResourceId): BlockIssue[] {
+    const target = this.findResource(resourceId);
+    return target ? target.resourceInfo.issues : [];
+  }
+
+  public addIssue(
+    resourceId: ResourceId,
+    body: SubmitIssueBody
+  ): { success: boolean; issue_id: IssueId; severity: IssueSeverity } {
+    const target = this.findResource(resourceId);
+    const issueId = getNextIssueId();
+    const severity: IssueSeverity =
+      body.severity || this.predictIssueSeverity(body.issue_type, body.description);
 
     const newIssue: BlockIssue = {
-      issue_id: `ISSUE-${Date.now()}-${Math.floor(Math.random() * 10000)}`,
-      issue_type: payload.issue_type as any,
-      description: payload.description,
-      severity: payload.severity,
-      reported_by: payload.reported_by || 'Controller / S&T Staff',
-      timestamp: payload.timestamp || new Date().toISOString(),
+      issue_id: issueId,
+      issue_type: body.issue_type,
+      description: body.description,
+      severity,
+      reported_by: body.reported_by || 'Chief Section Controller',
+      timestamp: body.timestamp || new Date().toISOString(),
     };
 
     if (target) {
-      target.feature.properties.issues.unshift(newIssue);
-      return { success: true, issue: newIssue, blockId: payload.block_id };
+      target.resourceInfo.issues.unshift(newIssue);
     }
 
-    // Even if corridor wasn't in memory yet, return success mock response
-    return { success: true, issue: newIssue, blockId: payload.block_id };
+    return { success: true, issue_id: issueId, severity };
   }
 
-  /**
-   * Resolves (removes) an issue by issue_id
-   */
+  public predictIssueSeverity(issueType: IssueType, description: string = ''): IssueSeverity {
+    const desc = description.toLowerCase();
+    if (
+      desc.includes('critical') ||
+      desc.includes('derail') ||
+      desc.includes('broken') ||
+      desc.includes('fracture') ||
+      desc.includes('fire') ||
+      desc.includes('blocked') ||
+      desc.includes('collision') ||
+      desc.includes('flood') ||
+      desc.includes('fallen') ||
+      desc.includes('emergency') ||
+      desc.includes('red signal') ||
+      issueType === 'obstruction'
+    ) {
+      return 'high';
+    }
+    if (
+      desc.includes('slow') ||
+      desc.includes('caution') ||
+      desc.includes('tsr') ||
+      desc.includes('delay') ||
+      desc.includes('intermittent') ||
+      desc.includes('glitch') ||
+      issueType === 'signal_fault' ||
+      issueType === 'speed_restriction'
+    ) {
+      return 'medium';
+    }
+    if (issueType === 'maintenance') {
+      return 'low';
+    }
+    return 'medium';
+  }
+
   public resolveIssue(
-    issueId: string,
-    blockId?: string
-  ): { success: boolean; resolvedCount: number } {
-    let resolvedCount = 0;
-
-    for (const collection of this.cache.values()) {
-      for (const feature of collection.features) {
-        if (blockId && feature.properties.block_id !== blockId) {
-          continue;
-        }
-        const initialLen = feature.properties.issues.length;
-        feature.properties.issues = feature.properties.issues.filter(
-          (issue) => issue.issue_id !== issueId
-        );
-        if (feature.properties.issues.length < initialLen) {
-          resolvedCount++;
-        }
-      }
+    resourceId: ResourceId,
+    issueId: IssueId
+  ): { resolved: boolean } {
+    const target = this.findResource(resourceId);
+    if (!target) {
+      return { resolved: false };
     }
 
-    return { success: resolvedCount > 0, resolvedCount };
+    const prevCount = target.resourceInfo.issues.length;
+    target.resourceInfo.issues = target.resourceInfo.issues.filter(
+      (i) => i.issue_id !== issueId
+    );
+
+    return { resolved: target.resourceInfo.issues.length < prevCount };
   }
 
-  /**
-   * Clears the in-memory cache (useful for tests or resets)
-   */
-  public reset(): void {
-    this.cache.clear();
+  public addResourceBlock(block: ResourceBlock): { success: boolean } {
+    const target = this.findResource(block.resource_id);
+    if (!target) {
+      return { success: false };
+    }
+
+    target.corridor.repairs.push({
+      resource_id: block.resource_id,
+      time_start: block.start,
+      time_end: block.end,
+    });
+
+    return { success: true };
+  }
+
+  public optimizePlan(corridorKey: string): Trip[] {
+    const corridor = this.getOrCreateCorridor(corridorKey);
+    const result = solveTimetablePlan({
+      trips: corridor.trips,
+      resources: corridor.resources.map((r) => r.resource),
+      repairs: corridor.repairs,
+    });
+    corridor.trips = result.trips;
+    return result.trips;
   }
 }
 
-export const sectionStore = new SectionStore();
-
+export const corridorStore = new CorridorStore();

@@ -5,10 +5,13 @@ import { StationSelector } from './components/selection/StationSelector';
 import { SectionHeader } from './components/section/SectionHeader';
 import { Legend } from './components/section/Legend';
 import { ReportPanel } from './components/report/ReportPanel';
+import { TimetablePanel } from './components/plan/TimetablePanel';
+import { PlanModifyModal } from './components/plan/PlanModifyModal';
 import { Toast } from './components/common/Toast';
 
 export const App: React.FC = () => {
   const screen = useRailwayStore((state) => state.screen);
+  const mode = useRailwayStore((state) => state.mode);
   const theme = useRailwayStore((state) => state.theme);
   const initialize = useRailwayStore((state) => state.initialize);
   const isLoadingInit = useRailwayStore((state) => state.isLoadingInit);
@@ -67,8 +70,14 @@ export const App: React.FC = () => {
               <Legend />
             </div>
 
-            {/* Floating Incident & Status Report Panel */}
-            <ReportPanel />
+            {/* Floating Incident & Status Report Panel (Report Mode) */}
+            {mode === 'report' && <ReportPanel />}
+
+            {/* Floating Timetable Dispatch Summary Panel (AI Plan Mode) */}
+            {mode === 'ai-plan' && <TimetablePanel />}
+
+            {/* Plan Modification Modal */}
+            <PlanModifyModal />
           </>
         )}
 

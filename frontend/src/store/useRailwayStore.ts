@@ -8,6 +8,8 @@ import {
   AppMode,
   ResourceId,
   IssueId,
+  TripId,
+  RepairRequest,
   SubmitIssueBody,
   BlockIssue,
 } from '../types';
@@ -18,6 +20,7 @@ import {
   fetchPlan,
   submitResourceIssue,
   resolveResourceIssue,
+  solveTimetablePlanApi,
 } from '../services/api';
 
 interface RailwayState {
@@ -49,6 +52,12 @@ interface RailwayState {
   hoveredResourceId: ResourceId | null;
   toastMessage: string | null;
 
+  // Timetable State
+  planStatus: 'proposed' | 'accepted' | 'rejected';
+  isModifyModalOpen: boolean;
+  activeModifyTripId: TripId | null;
+  isSolvingPlan: boolean;
+
   // Actions
   initialize: () => Promise<void>;
   setFromStation: (code: string | null) => void;
@@ -65,6 +74,14 @@ interface RailwayState {
   resolveResourceIssueAction: (
     resourceId: ResourceId,
     issueId: IssueId
+  ) => Promise<void>;
+  acceptPlan: () => void;
+  rejectPlan: () => Promise<void>;
+  openModifyModal: (tripId?: TripId) => void;
+  closeModifyModal: () => void;
+  updatePlanWithOptimization: (
+    modifiedTrips: Trip[],
+    repairs?: RepairRequest[]
   ) => Promise<void>;
   toggleTheme: () => void;
   resetToSelection: () => void;
@@ -101,6 +118,11 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
   selectedResourceId: null,
   hoveredResourceId: null,
   toastMessage: null,
+
+  planStatus: 'proposed',
+  isModifyModalOpen: false,
+  activeModifyTripId: null,
+  isSolvingPlan: false,
 
   initialize: async () => {
     try {
@@ -166,6 +188,9 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
         currentCorridor: corridorData.meta,
         screen: 'section',
         mode: 'report',
+        planStatus: 'proposed',
+        isModifyModalOpen: false,
+        activeModifyTripId: null,
         selectedResourceId: null,
         hoveredResourceId: null,
         isLoadingSection: false,
@@ -261,6 +286,79 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
     });
   },
 
+  acceptPlan: () => {
+    set({
+      planStatus: 'accepted',
+      toastMessage: 'Timetable Plan Approved. Dispatch schedule locked and sent to Section Controllers.',
+    });
+  },
+
+  rejectPlan: async () => {
+    const currentCorridor = get().currentCorridor;
+    const resources = get().resources;
+    set({
+      planStatus: 'rejected',
+      isSolvingPlan: true,
+      toastMessage: 'Timetable Rejected. AI Solver re-optimizing alternative dispatch...',
+    });
+
+    try {
+      if (currentCorridor) {
+        const resourceIds = resources.map((r) => r.resource.id);
+        const newTrips = await fetchPlan(currentCorridor.code, resourceIds);
+        set({
+          trips: newTrips,
+          planStatus: 'proposed',
+          isSolvingPlan: false,
+          toastMessage: 'AI Alternative Timetable generated. Ready for review.',
+        });
+      }
+    } catch (_err) {
+      set({ isSolvingPlan: false, planStatus: 'proposed' });
+    }
+  },
+
+  openModifyModal: (tripId) => {
+    set({
+      isModifyModalOpen: true,
+      activeModifyTripId: tripId || (get().trips[0]?.id ?? null),
+    });
+  },
+
+  closeModifyModal: () => {
+    set({ isModifyModalOpen: false, activeModifyTripId: null });
+  },
+
+  updatePlanWithOptimization: async (modifiedTrips, repairs = []) => {
+    set({
+      isSolvingPlan: true,
+      toastMessage: 'Running Mixed-Integer LP Solver to re-optimize schedule...',
+    });
+
+    try {
+      const resources = get().resources.map((r) => r.resource);
+      const solvedTrips = await solveTimetablePlanApi({
+        trips: modifiedTrips,
+        resources,
+        repairs,
+      });
+
+      set({
+        trips: solvedTrips,
+        planStatus: 'proposed',
+        isSolvingPlan: false,
+        isModifyModalOpen: false,
+        toastMessage: 'Timetable re-calculated by AI Solver with updated parameters.',
+      });
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Unknown solver error';
+      set({
+        isSolvingPlan: false,
+        toastMessage: `Optimization failed: ${msg}`,
+      });
+    }
+  },
+
   toggleTheme: () => {
     const nextTheme = get().theme === 'light' ? 'dark' : 'light';
     localStorage.setItem('sih_theme', nextTheme);
@@ -278,6 +376,9 @@ export const useRailwayStore = create<RailwayState>((set, get) => ({
       selectedResourceId: null,
       hoveredResourceId: null,
       mode: 'report',
+      planStatus: 'proposed',
+      isModifyModalOpen: false,
+      activeModifyTripId: null,
     });
   },
 

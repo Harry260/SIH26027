@@ -2,7 +2,7 @@
 
 > **SIH Problem Statement SIH26027**: *AI-Powered Automatic Block Planning to Maximize Asset Availability for Train Operations on Indian Railways*
 
-An Express.js + TypeScript mock backend service providing procedural track geometry generation, 4-aspect automatic block section modeling, dynamic AI train dispatch scheduling, and rolling stock asset availability heatmaps for **ANY station pair across Indian Railways**.
+An Express.js + TypeScript mock backend service providing procedural track geometry generation, 4-aspect automatic block section modeling, and dynamic AI train dispatch scheduling for **ANY station pair across Indian Railways**.
 
 ---
 
@@ -20,7 +20,6 @@ An Express.js + TypeScript mock backend service providing procedural track geome
    - [Block Section GeoJSON Schema](#2-block-section-geojson-schema)
    - [Issue & Telemetry Schema](#3-issue--telemetry-schema)
    - [AI Dispatch Plan Schema](#4-ai-dispatch-plan-schema)
-   - [Asset Utilization Schema](#5-asset-utilization-schema)
 5. [Complete REST API Reference](#-complete-rest-api-reference)
    - [`GET /api/health`](#get-apihealth)
    - [`GET /api/stations`](#get-apistations)
@@ -28,7 +27,6 @@ An Express.js + TypeScript mock backend service providing procedural track geome
    - [`GET /api/stations/meta/corridors`](#get-apistationsmetacorridors)
    - [`GET /api/sections`](#get-apisections)
    - [`GET /api/ai-plan`](#get-apiai-plan)
-   - [`GET /api/assets`](#get-apiassets)
    - [`POST /api/issues`](#post-apiissues)
    - [`DELETE /api/issues/:issueId`](#delete-apiissuesissueid)
    - [`GET /api/issues/blocks/:blockId`](#get-apiissuesblocksblockid)
@@ -49,7 +47,6 @@ graph TD
         Router --> SRouter["/api/stations Router"]
         Router --> SecRouter["/api/sections Router"]
         Router --> AIRouter["/api/ai-plan Router"]
-        Router --> AsRouter["/api/assets Router"]
         Router --> IssRouter["/api/issues Router"]
 
         SecRouter --> Store["Section Store (In-Memory Cache)"]
@@ -62,7 +59,6 @@ graph TD
         end
 
         AIRouter --> AIEngine["AI Dispatch Scheduler"]
-        AsRouter --> AssetEngine["Asset Heatmap & Loco Tracker"]
         IssRouter --> Store
     end
 
@@ -80,7 +76,6 @@ graph TD
 5. **Multi-Mode Support**:
    - **Report Mode**: Multi-issue telemetry (Signal fault, Speed restriction, Maintenance, Obstruction).
    - **AI Plan Mode**: Time-sequenced train slots, priority tiers (`Premier`, `Express`, `Freight`), headways, and speeds.
-   - **Asset View Mode**: Real-time rolling stock tracking (WAP-7, WAG-9, Vande Bharat rakes) and idle-time heatmaps.
 
 ---
 
@@ -209,19 +204,6 @@ interface AiPlanBlock {
 
 ---
 
-### 5. Asset Utilization Schema
-```typescript
-interface AssetBlock {
-  block_id: string;             // e.g. "NDLS-AGC-BLK-07"
-  idle_minutes: number;         // 0 to 180+
-  asset_id: string;             // e.g. "WAP7-30452"
-  asset_type?: "Electric Loco (WAP-7)" | "Diesel Loco (WDM-3D)" | "EMU / Vande Bharat" | "Freight Rake";
-  asset_status?: "Holding at Signal" | "Optimal Transit" | "Speed Restricted" | "Yard Staging";
-}
-```
-
----
-
 ## 📡 Complete REST API Reference
 
 Base URL: `http://localhost:4000/api`
@@ -299,40 +281,6 @@ Generates or retrieves the complete GeoJSON automatic block sections for **any s
 ```bash
 curl "http://localhost:4000/api/sections?from=NDLS&to=AGC"
 ```
-```json
-{
-  "success": true,
-  "meta": {
-    "from": { "code": "NDLS", "name": "New Delhi", "lat": 28.6143, "lng": 77.2189 },
-    "to": { "code": "AGC", "name": "Agra Cantt", "lat": 27.1591, "lng": 77.9944 },
-    "distance_km": 195,
-    "total_blocks": 20
-  },
-  "data": {
-    "type": "FeatureCollection",
-    "features": [
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "LineString",
-          "coordinates": [[77.2189, 28.6143], [77.2512, 28.5320], [77.2891, 28.4501]]
-        },
-        "properties": {
-          "block_id": "NDLS-AGC-BLK-01",
-          "sequence": 0,
-          "start_signal": "ABS-NDLS-100UP",
-          "end_signal": "ABS-NDLS-102UP",
-          "occupancy": "free",
-          "issues": [],
-          "length_m": 1400,
-          "max_speed_kmh": 140,
-          "gradient": "Level"
-        }
-      }
-    ]
-  }
-}
-```
 
 ---
 
@@ -367,48 +315,8 @@ curl "http://localhost:4000/api/ai-plan?from=NDLS&to=AGC"
 
 ---
 
-### `GET /api/assets`
-Returns asset idle duration heatmaps and locomotive tracking metrics for all blocks along a corridor.
-
-**Query Parameters:**
-- `from` & `to` *(required)*: e.g. `?from=NDLS&to=AGC`
-
-```bash
-curl "http://localhost:4000/api/assets?from=NDLS&to=AGC"
-```
-```json
-{
-  "success": true,
-  "corridor": "NDLS-AGC",
-  "total_tracked_assets": 20,
-  "data": {
-    "NDLS-AGC-BLK-01": {
-      "block_id": "NDLS-AGC-BLK-01",
-      "idle_minutes": 8,
-      "asset_id": "WAP7-30812",
-      "asset_type": "Electric Loco (WAP-7)",
-      "asset_status": "Optimal Transit"
-    }
-  }
-}
-```
-
----
-
 ### `POST /api/issues`
 Report a new telemetry, signal, or maintenance issue on any block.
-
-**Request Body:**
-```json
-{
-  "block_id": "NDLS-AGC-BLK-05",
-  "issue_type": "speed_restriction",
-  "description": "Emergency track packing work: 20 km/h caution order active",
-  "severity": "medium",
-  "reported_by": "P-WAY Gang #4",
-  "timestamp": "2026-08-29T17:40:00.000Z"
-}
-```
 
 ```bash
 curl -X POST http://localhost:4000/api/issues \
@@ -423,23 +331,6 @@ curl -X POST http://localhost:4000/api/issues \
   }'
 ```
 
-**Response (201 Created):**
-```json
-{
-  "success": true,
-  "issue_id": "ISSUE-1724950400000-4821",
-  "timestamp": "2026-08-29T17:40:00.000Z",
-  "data": {
-    "issue_id": "ISSUE-1724950400000-4821",
-    "issue_type": "speed_restriction",
-    "description": "Emergency track packing work: 20 km/h caution order active",
-    "severity": "medium",
-    "reported_by": "P-WAY Gang #4",
-    "timestamp": "2026-08-29T17:40:00.000Z"
-  }
-}
-```
-
 ---
 
 ### `DELETE /api/issues/:issueId`
@@ -447,13 +338,6 @@ Resolve and dismiss an issue from a block.
 
 ```bash
 curl -X DELETE "http://localhost:4000/api/issues/ISSUE-1724950400000-4821"
-```
-```json
-{
-  "success": true,
-  "message": "Issue 'ISSUE-1724950400000-4821' resolved successfully",
-  "resolvedCount": 1
-}
 ```
 
 ---
@@ -478,12 +362,6 @@ The backend utilizes `SectionStore` (`src/services/sectionStore.ts`) to manage l
 
 ## 🚀 Getting Started & Installation
 
-### Prerequisites
-- Node.js 18.0+
-- npm 9.0+
-
-### Installation & Run
-
 ```bash
 # Navigate to the mock backend folder
 cd backend-mock
@@ -503,17 +381,3 @@ Default port is `4000`. You can configure a custom port via `.env`:
 ```env
 PORT=4000
 ```
-
----
-
-## 🔗 Frontend Integration Guide
-
-The frontend application (`frontend/src/services/api.ts`) communicates directly with this mock backend:
-
-1. **Environment Configuration**: Set `VITE_API_URL` in `frontend/.env`:
-   ```env
-   VITE_API_URL=http://localhost:4000/api
-   ```
-2. **Dynamic Fallback**: If the mock backend is not running, the frontend gracefully falls back to local procedural mock generation so development is never blocked.
-3. **Plugging a Real Backend Later**: To connect a production backend (e.g. Python FastAPI, Java Spring Boot, Go), simply point `VITE_API_URL` to your production API endpoint. Because all JSON schemas and contracts match this specification 1-to-1, zero frontend UI code changes are needed.
-

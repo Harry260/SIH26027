@@ -8,6 +8,7 @@ import {
   IssueId,
   ResourceId,
   ResourceBlock,
+  TimetableInput,
 } from '../types';
 import { MOCK_STATIONS, SUPPORTED_CORRIDORS } from '../mockData/stations';
 import { getBlockSectionsForRoute } from '../mockData/blockSections';
@@ -201,3 +202,26 @@ export async function blockResource(
   }
   return { success: true };
 }
+
+export async function solveTimetablePlanApi(
+  input: TimetableInput
+): Promise<Trip[]> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/plan`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(input),
+      signal: AbortSignal.timeout(3500),
+    });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.status === 'ok' && json.data?.trips) {
+        return json.data.trips;
+      }
+    }
+  } catch (_err) {
+    // Fallback
+  }
+  return input.trips;
+}
+
